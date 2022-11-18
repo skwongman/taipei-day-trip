@@ -173,7 +173,7 @@ def api_attraction_id(attractionId):
 		if len(results) == 0:
 			return jsonify({"error": True, "message": "Attraction ID Not Found"}), 404
 
-		return jsonify({"data": attraction_data}), 200
+		return jsonify({"data": attraction_data[0]}), 200
 
 	except Exception as e:
 		print("Error: ", e)

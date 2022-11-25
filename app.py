@@ -1,8 +1,10 @@
 from flask import *
+from flask_cors import CORS
 from mysql.connector import pooling
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import re
 
 dbconfig = {
     "host": os.getenv("HOST"),
@@ -14,12 +16,14 @@ dbconfig = {
 mypool = pooling.MySQLConnectionPool(
     pool_name = "mypool",
     pool_size = 5,
+	pool_reset_session=True,
     **dbconfig
 )
 
-app=Flask(__name__)
+app=Flask(__name__, static_folder = "static", static_url_path = "/")
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+# CORS(app)
 
 # Pages
 @app.route("/")
@@ -35,7 +39,7 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-#Error Handling
+# Error Handling
 @app.errorhandler(404)
 def error_404(e):
     return jsonify({"error": True, "message": str(e)}), 404
@@ -52,77 +56,57 @@ def error_500(e):
 @app.route('/api/attractions', methods = ["GET"])
 def api_attractions():
 	page = request.args.get("page", 0, type = int)
+	page_interval = 12
+	next_page_number = 1
 	keyword = request.args.get("keyword", "")
+	handled_keyword1 = ("%" + keyword + "%")
+	handled_keyword2 = ("%" + keyword)
+	handled_keyword3 = (keyword + "%")
 
 	try:
 		connection = mypool.get_connection()
 		cursor = connection.cursor()
 		insert_query = ("""
-			SELECT
-			attraction_id, name, category, description,
-			address, transport, mrt, lat, lng,
-			GROUP_CONCAT(images) AS all_images
-			FROM attractions WHERE FIND_IN_SET(%s, category) OR name LIKE '%{}%' OR name LIKE '%{}' OR name LIKE '{}%' 
-			GROUP BY name ORDER BY attraction_id LIMIT %s, 12;
-		""".format(keyword, keyword, keyword))
+			SELECT * FROM attractions
+			WHERE category = %s OR name LIKE %s OR name LIKE %s OR name LIKE %s 
+			ORDER BY attraction_id LIMIT %s, %s;
+		""")
 
-		insert_value = (keyword, (page * 12))
-		cursor.execute(insert_query, insert_value)
-		results = cursor.fetchall()
+		# Function to check the next page information.
+		def results(next_page_number = 0):
+			insert_value = (
+				keyword, handled_keyword1, handled_keyword2, handled_keyword3,
+				((page + next_page_number) * page_interval), page_interval
+			)
+			cursor.execute(insert_query, insert_value)
+			results = cursor.fetchall()
+			return results
 
-		next_page_insert_value = (keyword, ((page + 1) * 12))
-		cursor.execute(insert_query, next_page_insert_value)
-		next_page_results = cursor.fetchall()
-
-		def attraction_images(index):
-			try:
-				connection = mypool.get_connection()
-				cursor = connection.cursor()
-				insert_query = ("""
-					SELECT
-					attraction_id, images
-					FROM attractions WHERE attraction_id = %s
-					GROUP BY images ORDER BY attraction_id;
-				""")
-				insert_value = (results[index][0],)
-				cursor.execute(insert_query, insert_value)
-				images = cursor.fetchall()
-				all_images = []
-				for image in images:
-					all_images.append(image[1])
-				return all_images
-
-			except Exception as e:
-				print("Error: ", e)
-				return jsonify({"error": True, "message": str(e)}), 500
-				
-			finally:
-				cursor.close()
-				connection.close()
-
-		api_attractions.sub = attraction_images
-		
 		attraction_data = []
-		for result in results:
+		for result in results():
+			images = result[10]
+			# Use Regex for sortling the image URLs, where .split() is used to split all images in every single line.
+			handled_images = re.sub("[^\w:/,-\.$]", "", images).split(",")
 			attraction_data.append(
 				{
-					"id": result[0],
-					"name": result[1],
-					"category": result[2],
-					"description": result[3],
-					"address": result[4],
-					"transport": result[5],
-					"mrt": result[6],
-					"lat": result[7],
-					"lng": result[8],
-					"images": attraction_images(results.index(result))
+					"id": result[1],
+					"name": result[2],
+					"category": result[3],
+					"description": result[4],
+					"address": result[5],
+					"transport": result[6],
+					"mrt": result[7],
+					"lat": result[8],
+					"lng": result[9],
+					"images": handled_images
 				}
 			)
 
-		if len(next_page_results) == 0:
+		# Input page no. (i.e. 1) in the above function to check the next page information.
+		if len(results(next_page_number)) == 0: 
 			next_page = None
 		else:
-			next_page = (page + 1)
+			next_page = (page + next_page_number)
 		
 		return jsonify({"nextPage": next_page, "data": attraction_data}), 200
 
@@ -139,41 +123,30 @@ def api_attraction_id(attractionId):
 	try:
 		connection = mypool.get_connection()
 		cursor = connection.cursor()
-		insert_query = ("""
-			SELECT
-			attraction_id, name, category, description,
-			address, transport, mrt, lat, lng,
-			GROUP_CONCAT(images) AS all_images
-			FROM attractions WHERE attraction_id = %s
-			GROUP BY name ORDER BY attraction_id;
-		""")
+		insert_query = "SELECT * FROM attractions WHERE attraction_id = %s ORDER BY attraction_id;"
 		insert_value = (attractionId,)
 		cursor.execute(insert_query, insert_value)
-		results = cursor.fetchall()
-
-		api_attractions() # Call the same function inside api_attractions route.
-
-		attraction_data = []
-		for result in results:
-			attraction_data.append(
-				{
-					"id": result[0],
-					"name": result[1],
-					"category": result[2],
-					"description": result[3],
-					"address": result[4],
-					"transport": result[5],
-					"mrt": result[6],
-					"lat": result[7],
-					"lng": result[8],
-					"images": api_attractions.sub(results.index(result))
-				}
-			)
+		results = cursor.fetchone()
+		images = results[10]
+		handled_images = re.sub("[^\w:/,-\.$]", "", images).split(",")
+		
+		attraction_data = {
+			"id": results[1],
+			"name": results[2],
+			"category": results[3],
+			"description": results[4],
+			"address": results[5],
+			"transport": results[6],
+			"mrt": results[7],
+			"lat": results[8],
+			"lng": results[9],
+			"images": handled_images
+		}
 		
 		if len(results) == 0:
-			return jsonify({"error": True, "message": "Attraction ID Not Found"}), 404
+			return jsonify({"error": True, "message": "Attraction ID Not Found"}), 400
 
-		return jsonify({"data": attraction_data[0]}), 200
+		return jsonify({"data": attraction_data}), 200
 
 	except Exception as e:
 		print("Error: ", e)
@@ -188,7 +161,7 @@ def api_categories():
 	try:
 		connection = mypool.get_connection()
 		cursor = connection.cursor()
-		cursor.execute("SELECT category FROM attractions GROUP BY category;")
+		cursor.execute("SELECT category FROM attractions GROUP BY category ORDER BY attraction_id;")
 		results = cursor.fetchall()
 		category_data = []
 		for result in results:

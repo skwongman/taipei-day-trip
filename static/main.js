@@ -32,9 +32,11 @@ function addDataToDOM(data){
     contentOuterFrame.appendChild(contentInnerFrame);
 
     if(data.length == 0){
+        isLoading = true;
         contentContainer.innerHTML = "<div class='no-result'>抱歉，找不到任何搜尋結果。</div>"
     }
     else{
+        isLoading = true;
         for(let i of data){
             contentInnerFrame.innerHTML += `
                 <div class="content" onmouseover="contentColorChange(this)" onmouseout="contentColorChangeBack(this)">
@@ -59,8 +61,8 @@ function addDataToDOM(data){
 function showLoading(pageNum = nextPage) {
     loading.classList.add("show");
     setTimeout(() => {
-        isLoading = false;
         getData(pageNum, searchKeyword.value)
+        isLoading = false;
     }, 1000)
 };
 
@@ -70,12 +72,10 @@ function scrolling(){
     window.addEventListener("scroll", () => {
         const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
         if(scrollHeight - 300 <= (clientHeight + scrollTop)){
-            if(nextPage != null && !isLoading){
-                !async function(){
-                    isLoading = true;
-                    await showLoading();
-                    loading.classList.remove("showInMiddle");
-                }();
+            if(nextPage != null && isLoading){
+                isLoading = false;
+                showLoading();
+                loading.classList.remove("showInMiddle");
             };
         };
     });
@@ -108,13 +108,11 @@ function searchBtn(){
         contentContainer.textContent = "";
         loading.classList.add("showInMiddle");
 
-        if(nextPage != null && !isLoading && pattern["searchInput"].test(searchKeyword.value) && searchKeyword.value != ""){
-            !async function(){
-                isLoading = true;
-                await showLoading(initPage);
-                loading.classList.add("showInMiddle");
-                e.preventDefault();
-            }();
+        if(nextPage != null && isLoading && pattern["searchInput"].test(searchKeyword.value) && searchKeyword.value != ""){
+            isLoading = false;
+            showLoading(initPage);
+            loading.classList.add("showInMiddle");
+            e.preventDefault();
         }
         else{
             loading.classList.add("show");
@@ -148,6 +146,7 @@ function addCatDataToDOM(catData){
     categoryFrame.appendChild(categoryContent);
 
     for(let i of catData){
+        isLoading = true;
         categoryContent.innerHTML += `
             <div class="select" onmouseover="colorChange(this)" onmouseout="colorChangeBack(this)" name="${i}">${i}</div>
         `;

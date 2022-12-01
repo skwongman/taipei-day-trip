@@ -128,7 +128,6 @@ a:link, a:visited {
     cursor: pointer;
 }
 
-
 #categoryFrame {
     display: none;
 }
@@ -467,9 +466,6 @@ a:link, a:visited {
     padding: 5px;
     border: 0px solid white;
     outline: none !important;
-    background-image: url("/img/icon_calendar.png");
-    background-position: 88%;
-    background-repeat: no-repeat;
     font-size: 16px;
 }
 
@@ -533,9 +529,8 @@ input[type="radio"]:checked:before  {
 
 .separator {
     width: 1200px;
-    margin-top: 30px;
-    margin-bottom: 40px;
-    color: #E8E8E8;
+    height: 1px;
+    border: 1px solid #E8E8E8;
 }
 
 .attraction-details-frame {

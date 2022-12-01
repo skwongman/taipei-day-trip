@@ -4,7 +4,6 @@ from mysql.connector import pooling
 import os
 from dotenv import load_dotenv
 load_dotenv()
-import re
 
 dbconfig = {
     "host": os.getenv("HOST"),
@@ -84,9 +83,6 @@ def api_attractions():
 
 		attraction_data = []
 		for result in results():
-			images = result[10]
-			# Use Regex for sortling the image URLs, where .split() is used to split all images in every single line.
-			handled_images = re.sub("[^\w:/,-\.$]", "", images).split(",")
 			attraction_data.append(
 				{
 					"id": result[1],
@@ -98,7 +94,7 @@ def api_attractions():
 					"mrt": result[7],
 					"lat": result[8],
 					"lng": result[9],
-					"images": handled_images
+					"images": eval(result[10])
 				}
 			)
 
@@ -126,27 +122,29 @@ def api_attraction_id(attractionId):
 		insert_query = "SELECT * FROM attractions WHERE attraction_id = %s ORDER BY attraction_id;"
 		insert_value = (attractionId,)
 		cursor.execute(insert_query, insert_value)
-		results = cursor.fetchone()
-		images = results[10]
-		handled_images = re.sub("[^\w:/,-\.$]", "", images).split(",")
-		
-		attraction_data = {
-			"id": results[1],
-			"name": results[2],
-			"category": results[3],
-			"description": results[4],
-			"address": results[5],
-			"transport": results[6],
-			"mrt": results[7],
-			"lat": results[8],
-			"lng": results[9],
-			"images": handled_images
-		}
-		
+		results = cursor.fetchall()
+
+		attraction_data = []
+		for result in results:
+			attraction_data.append(
+				{
+					"id": result[1],
+					"name": result[2],
+					"category": result[3],
+					"description": result[4],
+					"address": result[5],
+					"transport": result[6],
+					"mrt": result[7],
+					"lat": result[8],
+					"lng": result[9],
+					"images": eval(result[10])
+				}
+			)
+
 		if len(results) == 0:
 			return jsonify({"error": True, "message": "Attraction ID Not Found"}), 400
 
-		return jsonify({"data": attraction_data}), 200
+		return jsonify({"data": attraction_data[0]}), 200
 
 	except Exception as e:
 		print("Error: ", e)

@@ -15,13 +15,13 @@ dbconfig = {
 mypool = pooling.MySQLConnectionPool(
     pool_name = "mypool",
     pool_size = 5,
-	pool_reset_session=True,
+	pool_reset_session = True,
     **dbconfig
 )
 
-app=Flask(__name__, static_folder = "static", static_url_path = "/")
-app.config["JSON_AS_ASCII"]=False
-app.config["TEMPLATES_AUTO_RELOAD"]=True
+app = Flask(__name__, static_folder = "static", static_url_path = "/")
+app.config["JSON_AS_ASCII"] = False
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 # CORS(app)
 
 # Pages
@@ -99,7 +99,7 @@ def api_attractions():
 			)
 
 		# Input page no. (i.e. 1) in the above function to check the next page information.
-		if len(results(next_page_number)) == 0: 
+		if len(results(next_page_number)) == 0:
 			next_page = None
 		else:
 			next_page = (page + next_page_number)

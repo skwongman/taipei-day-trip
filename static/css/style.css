@@ -115,7 +115,7 @@ a:link, a:visited {
     font-weight: bold;
 }
 
-.search-btn {
+.search-button {
     flex: none;
     width: 60px;
     height: 46px;
@@ -126,6 +126,10 @@ a:link, a:visited {
     background-repeat: no-repeat;
     box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     cursor: pointer;
+}
+
+.search-button:hover {
+    opacity: 0.8;
 }
 
 #categoryFrame {
@@ -223,15 +227,14 @@ a:link, a:visited {
 .content-title {
     display: flex;
     position: relative;
+    bottom: 43px;
     align-items: center;
     width: 100%;
     height: 40px;
     margin-bottom: -40px;
-    transform: translate(0px, -85px);
-    background-color: #000000;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
     font-weight: bold;
-    opacity: 0.6;
 }
 
 .content-title > div {
@@ -522,6 +525,10 @@ input[type="radio"]:checked:before  {
     cursor: pointer;
 }
 
+.attraction-button-background:hover {
+    opacity: 0.8;
+}
+
 .attraction-button {
     color: #FFFFFF;
     font-size: 19px;
@@ -529,8 +536,9 @@ input[type="radio"]:checked:before  {
 
 .separator {
     width: 1200px;
-    height: 1px;
-    border: 1px solid #E8E8E8;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    border: 0.5px solid #E8E8E8;
 }
 
 .attraction-details-frame {

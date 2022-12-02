@@ -34,7 +34,7 @@ function addDataToDOM(data){
     const contentOuterFrame = document.createElement("div");
     contentOuterFrame.classList.add("content-outer-frame");
 
-    var contentInnerFrame = document.createElement("div");
+    const contentInnerFrame = document.createElement("div");
     contentInnerFrame.classList.add("content-inner-frame");
     contentOuterFrame.appendChild(contentInnerFrame);
     
@@ -44,13 +44,14 @@ function addDataToDOM(data){
                 <a href="http://52.205.132.168:3000/attraction/${attraction.id}">
                     <div class="images" id="${attraction.id}"><img src="${attraction.images[0]}"><div>
                 </a>
+            <div class="content-title">
+                <div>${attraction.name}</div>
+            </div>
             <div class="content-text">
                 <div class="content-text-left">${attraction.mrt}</div>
                 <div class="content-text-right">${attraction.category}</div>
             </div>
-            <div class="content-title">
-                <div>${attraction.name}</div>
-            </div>
+            
         `;
     };
 
@@ -89,10 +90,10 @@ scrolling();
 
 
 // Search button event handling.
-function searchBtn(){
-    const searchButtom = document.querySelector("#search-btn");
+function searchButton(){
+    const searchButton = document.querySelector("#search-button");
 
-    searchButtom.addEventListener("click", () => {
+    searchButton.addEventListener("click", () => {
         var nextPage = [];
         var initPage = 0;
         const pattern = {searchInput: /[\u4E00-\u9FFF\u3400-\u4DBF\a-z\d]/};
@@ -114,7 +115,7 @@ function searchBtn(){
         };
     });
 };
-searchBtn();
+searchButton();
 
 
 // Fetch category API data on web initial load. 

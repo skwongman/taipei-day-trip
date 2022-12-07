@@ -7,59 +7,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台北一日遊</title>
+    <link rel="shortcut icon" href="#"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="/js/html/header.js" defer></script>
+    <script src="/js/html/footer.js" defer></script>
+    <script src="/js/html/member.js" defer></script>
     <script src="/js/main.js" defer></script>
+    <script type="module" src="/js/member/member.js" defer></script>
 </head>
 
 <body>
 
     <!-- Header and Navigation -->
-    <div class="header-frame">
-
-        <div class="header">
-
-            <div class="title">
-                <div class="item">
-                    <div><a class="item-text" href="/">台北一日遊</a></div>
-                </div>
-            </div>
-
-            <div class="nav">
-                <div class="item">預定行程</div>
-                <div class="item">登入/註冊</div>
-            </div>
-
-        </div>
-
-    </div>
+    <main-header></main-header>
 
 
     <!-- Banner and Search -->
     <div class="banner">
-
         <div class="banner-inner-frame">
-
             <div class="banner-title-1">輕鬆享受台北一日悠閒</div>
             <div class="banner-title-2">探索每個角落，體驗城市的深度旅遊行程</div>
-
             <div class="search-frame">
                 <div><input id="searchKeyword" type="text" placeholder="輸入景點名稱查詢"></div>
                 <div id="search-button" class="search-button"></div>
             </div>
-
-            <div id="search-container"></div>
-
+            <div id="categoryFrame">
+                <div id="category"></div>
+            </div>
         </div>
-
     </div>
 
 
     <!-- Main Content  -->
-    <div id="content-container"></div>
+    <div class="content-outer-frame">
+        <div id="content-container" class="content-inner-frame"></div>
+    </div>
+
+
+    <!-- Member Register and Signin -->
+    <main-member></main-member>
 
 
     <!-- Footer -->
-    <div id="footer" class="footer">COPYRIGHT © 2022 台北一日遊</div>
+    <main-footer></main-footer>
 
 
     <!-- Loading Effect -->
@@ -68,7 +58,6 @@
         <div class="ball"></div>
         <div class="ball"></div>
     </div>
-
 
 </body>
 

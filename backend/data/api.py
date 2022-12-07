@@ -11,7 +11,7 @@ db = mysql.connector.connect(
     database = os.getenv("DATABASE")
 )
 
-with open("./data/taipei-attractions.json", mode = "r", encoding = "utf-8") as file:
+with open("./backend/data/taipei-attractions.json", mode = "r", encoding = "utf-8") as file:
     json_data = json.load(file)
 
 attraction_data = json_data["result"]["results"]

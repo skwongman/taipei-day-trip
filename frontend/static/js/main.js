@@ -1,8 +1,8 @@
 let nextPage = [];
 let isLoading = false;
 const initLoadPageNum = 0;
-const contentContainer = document.getElementById("content-container");
 const loading = document.querySelector(".loading");
+const contentContainer = document.querySelector("#content-container");
 
 
 // ################################################### Main Content Related ###################################################
@@ -22,28 +22,26 @@ async function getData(page, keyword){
     if(data.error == true) console.log(data.message);
     nextPage = data.nextPage;
 
-    isLoading = true;
-    (data.length == 0) ?
-    contentContainer.innerHTML = "<div class='no-result'>抱歉，找不到任何搜尋結果。</div>" :
-    addDataToDOM(data.data);
+    if(data.data.length == 0){
+        isLoading = true;
+        contentContainer.innerHTML = "<div class='no-result'>抱歉，找不到任何搜尋結果。</div>"
+        loading.classList.remove("show");
+    }
+    else{
+        isLoading = true;
+        addDataToDOM(data.data);
+    }
 };
 
 
 // Add fetched data to HTML DOM.
 function addDataToDOM(data){
-    const contentOuterFrame = document.createElement("div");
-    contentOuterFrame.classList.add("content-outer-frame");
-
-    const contentInnerFrame = document.createElement("div");
-    contentInnerFrame.classList.add("content-inner-frame");
-    contentOuterFrame.appendChild(contentInnerFrame);
-    
     for(let attraction of data){
-        contentInnerFrame.innerHTML += `
+        contentContainer.innerHTML += `
             <div class="content">
-                <a href="http://52.205.132.168:3000/attraction/${attraction.id}">
-                    <div class="images" id="${attraction.id}"><img src="${attraction.images[0]}"><div>
-                </a>
+                <div class="images" id="${attraction.id}">
+                    <a href="http://52.205.132.168:3000/attraction/${attraction.id}"><img src="${attraction.images[0]}"></a>
+                <div>
             <div class="content-title">
                 <div>${attraction.name}</div>
             </div>
@@ -51,11 +49,9 @@ function addDataToDOM(data){
                 <div class="content-text-left">${attraction.mrt}</div>
                 <div class="content-text-right">${attraction.category}</div>
             </div>
-            
         `;
     };
 
-    contentContainer.appendChild(contentOuterFrame);
     loading.classList.remove("show");
 };
 
@@ -66,7 +62,7 @@ function showLoading(pageNum = nextPage) {
     setTimeout(() => {
         getData(pageNum, searchKeyword.value);
         isLoading = false;
-    }, 1000);
+    }, 500);
 };
 
 
@@ -86,13 +82,12 @@ function scrolling(){
 scrolling();
 
 
-// ################################################### Button related ###################################################
+// ################################################### Category Selection related ###################################################
 
 
 // Search button event handling.
 function searchButton(){
     const searchButton = document.querySelector("#search-button");
-
     searchButton.addEventListener("click", () => {
         var nextPage = [];
         var initPage = 0;
@@ -111,7 +106,7 @@ function searchButton(){
             setTimeout(() => {
                 contentContainer.innerHTML = "<div class='no-result'>請輸入景點名稱查詢。</div>";
                 loading.classList.remove("show");
-            }, 1000);
+            }, 500);
         };
     });
 };
@@ -130,40 +125,13 @@ getCatData();
 
 // Add fetched data to HTML DOM.
 function addCatDataToDOM(catData){
-    const searchContainer = document.getElementById("search-container");
-
-    var categoryFrame = document.createElement("div");
-    categoryFrame.setAttribute("id", "categoryFrame");
-
-    var categoryContent = document.createElement("div");
-    categoryContent.setAttribute("id", "category");
-    categoryFrame.appendChild(categoryContent);
-
-    for(let i of catData){
+    const searchContainer = document.querySelector("#category");
+    for(let category of catData){
         isLoading = true;
-        categoryContent.innerHTML += `<div class="select" name="${i}">${i}</div>`;
+        searchContainer.innerHTML += `<div class="select" name="${category}">${category}</div>`;
     };
-
-    searchContainer.appendChild(categoryFrame);
     selectCategory();
 };
-
-
-// Pop-up menu.
-function popUpMenu(){
-    searchKeyword.addEventListener("click", (e) => {
-        const categoryFrame = document.getElementById("categoryFrame");
-        categoryFrame.classList.toggle("is-active");
-        e.stopPropagation();
-    });
-
-    window.addEventListener("click", (e) => {
-        if(e.target != document.querySelector("div.a")){
-            categoryFrame.classList.remove("is-active");
-        };
-    });
-};
-popUpMenu();
 
 
 // Select category item event handling.
@@ -176,3 +144,20 @@ function selectCategory(){
         });
     });
 };
+
+
+// Category Pop-up menu.
+function categoryPopUpMenu(){
+    searchKeyword.addEventListener("click", (e) => {
+        const categoryFrame = document.querySelector("#categoryFrame");
+        categoryFrame.classList.toggle("is-active");
+        e.stopPropagation();
+    });
+
+    window.addEventListener("click", (e) => {
+        if(e.target != document.querySelector("div.a")){
+            categoryFrame.classList.remove("is-active");
+        };
+    });
+};
+categoryPopUpMenu();

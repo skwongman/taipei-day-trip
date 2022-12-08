@@ -44,6 +44,7 @@ a:link, a:visited {
     font-weight: bold;
 }
 
+
 .nav {
     display: flex;
     flex: auto;
@@ -52,9 +53,19 @@ a:link, a:visited {
 }
 
 .item {
+    display: block;
     margin: 5px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.item.inactive {
+    display: none;
+}
+
+.item:hover {
+    color: #448899;
+    font-weight: bold;
 }
 
 
@@ -162,6 +173,7 @@ a:link, a:visited {
 
 .select:hover {
     background-color: #E8E8E8;
+    color: #448899;
     font-weight: bold;
 }
 
@@ -472,7 +484,7 @@ a:link, a:visited {
     font-size: 16px;
 }
 
-input[type="radio"]  {
+input[type="radio"] {
     position: relative;
     width: 18px;
     height: 18px;
@@ -481,7 +493,7 @@ input[type="radio"]  {
     -webkit-appearance: none;
 }
 
-input[type="radio"]:before  {
+input[type="radio"]:before {
     display: block;
     width: 14px;
     height: 14px;
@@ -490,7 +502,7 @@ input[type="radio"]:before  {
     content: "";    
 }
 
-input[type="radio"]:checked:before  {
+input[type="radio"]:checked:before {
     background: #448899;
 }
 
@@ -562,6 +574,198 @@ input[type="radio"]:checked:before  {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
+}
+
+
+/* Member Register and Signin */
+.layer {
+    display: none;
+}
+
+.layer.active {
+    display: block;
+    z-index: 4;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: rgba(0,0,0,0.25);
+}
+
+.signin-frame,
+.register-frame {
+    display: none;
+    animation: signin-fade 0.2s ease-in-out;
+}
+
+@keyframes signin-fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.signin-frame.active,
+.register-frame.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-menu,
+.register-menu {
+    z-index: 5;
+    position: fixed;
+    top: 5rem;
+    width: 340px;
+    height: 275px;
+    height: auto;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.signin-close,
+.register-close {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    cursor: pointer;
+}
+
+.signin-cover,
+.register-cover {
+    height: 10px;
+    border-radius: 6px 6px 0px 0px;
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+}
+
+.signin-title,
+.register-title {
+    margin: 10px;
+    color: #666666;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.signin-input-frame,
+.register-input-frame {
+    text-align: center;
+}
+
+.signin-input,
+.register-input {
+    box-sizing: border-box;
+    width: 310px;
+    height: 47px;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    outline: none !important;
+    color: #757575;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.register-input.valid {
+    border: 2px solid green;
+}
+
+.register-input.invalid {
+    border: 2px solid red;
+}
+
+.register-input + .register-verify {
+    display: none;
+    height: 0;
+    color:red;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.register-input.invalid + .register-verify {
+    display: block;
+    height: auto;
+    margin: 6px 18px 6px 18px;
+}
+
+.signin-button-frame,
+.register-button-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-button,
+.register-button {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 310px;
+    height: 47px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #448899;
+    color: white;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signin-button:hover,
+.register-button:hover {
+    opacity: 0.8;
+}
+
+.signin-register {
+    margin: 10px 0px 18px 0px;
+    color: #666666;
+    font-size: 16px;
+    text-align: center;
+}
+
+.register-message,
+.signin-message {
+    margin: 10px 0px 15px 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.register-message.successful {
+    color: green;
+}
+
+.register-message.warning,
+.signin-message.warning {
+    color: red;
+}
+
+.register-signin {
+    margin: 10px 0px 20px 0px;
+    color: #666666;
+    font-size: 16px;
+    text-align: center;
+}
+
+.signin-register-click,
+.register-signin-click {
+    cursor: pointer;
+}
+
+.signin-register-click:hover,
+.register-signin-click:hover {
+    color: #448899;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 

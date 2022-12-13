@@ -1,4 +1,5 @@
 class Header extends HTMLElement{
+
     connectedCallback(){
         this.innerHTML = `
             <div class="header-frame">
@@ -9,7 +10,7 @@ class Header extends HTMLElement{
                         </div>
                     </div>
                     <div class="nav">
-                        <div class="item">預定行程</div>
+                        <div id="booking" class="item">預定行程</a></div>
                         <div id="signin" class="item">登入/註冊</div>
                         <div id="signout" class="item inactive">登出系統</div>
                     </div>
@@ -17,6 +18,7 @@ class Header extends HTMLElement{
             </div>
         `;
     };
+    
 };
 
 customElements.define("main-header", Header);

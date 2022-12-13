@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北一日遊</title>
+    <link rel="shortcut icon" href="#"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="/js/html/header.js" defer></script>
+    <script src="/js/html/footer.js" defer></script>
+    <script src="/js/html/member.js" defer></script>
+    <script type="module" src="/js/booking/booking.js" defer></script>
+    <script type="module" src="/js/member/member.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header and Navigation -->
+    <main-header></main-header>
+
+
+    <!-- Separator -->
+    <br/><br/><br/><br/><br/>
+
+
+    <!-- Booking Content -->
+    <div class="booking-frame">
+        <div class="booking">
+            <div id="username" class="booking-title"></div>
+            <div id="bookingNoBooking" class="booking-no-booking"></div>
+        </div>
+    </div>
+
+    <div id="bookingContainer" class="booking-container">
+
+        <div class="booking-frame">
+            <div class="booking">
+
+                <div class="booking-information">
+
+                    <div class="booking-image-frame">
+                        <ul>
+                            <li id="bookingImage" class="booking-image">
+                                
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="booking-details">
+                        <div class="booking-details-title">
+                            <span id="bookingAttraction" class="booking-attraction"></span>
+                        </div>
+                        <div class="booking-details-text"><b>日期： </b>
+                            <span id="bookingDate"></span>
+                        </div>
+                        <div class="booking-details-text"><b>時間： </b>
+                            <span id="bookingTime"></span>
+                        </div>
+                        <div class="booking-details-text"><b>費用： </b>
+                            <span id="bookingFee"></span>
+                        </div>
+                        <div class="booking-details-text"><b>地點： </b>
+                            <span id="bookingVenue"></span>
+                        </div>
+                    </div>
+
+                    <div class="booking-delete">
+                        <img id="bookingDelete" src="./img/icon_delete.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="separator"/>
+
+        <div class="contact-frame">
+            <div class="contact">
+                <div class="contact-title">您的聯絡資訊</div>
+                <div class="contact-text">聯絡姓名：
+                    <input id="contactName" class="contact-input" name="name" type="text" value="">
+                </div>
+                <div class="contact-text">聯絡信箱：
+                    <input id="contactEmail" class="contact-input" name="email" type="text" value="">
+                </div>
+                <div class="contact-text">手機號碼：
+                    <input id="contactNum" class="contact-input" name="contact" type="text" maxlength="9">
+                </div>
+                <div class="contact-text message">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
+            </div>
+        </div>
+
+        <hr class="separator"/>
+
+        <div class="credit-card-frame">
+            <div class="credit-card">
+                <div class="credit-card-title">信用卡付款資訊</div>
+                <div class="credit-card-text">卡片號碼：
+                    <input id="creditCardNum" class="credit-card-input" name="cardNum" type="text" pattern="[\d]{19}" maxlength="19" placeholder="**** **** **** ****">
+                </div>
+                <div class="credit-card-text">過期時間：
+                    <input id="creditCardDate" class="credit-card-input" name="cardDate" type="text" maxlength="5" placeholder="MM / YY">
+                </div>
+                <div class="credit-card-text">驗證密碼：
+                    <input id="creditCardCVV" class="credit-card-input" name="cardCVV" type="text" maxlength="3" placeholder="CVV">
+                </div>
+            </div>
+        </div>
+
+        <hr class="separator"/>
+
+        <div class="confirm-booking-frame">
+            <div class="confirm-booking">
+                <div id="confirmAmount" class="confirm-amount"></div>
+                <div class="confirm-button-frame">
+                    <div id="confirmButton" class="confirm-button">確認訂購並付款</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <!-- Member Register and Signin -->
+    <main-member></main-member>
+
+
+    <!-- Footer -->
+    <main-footer></main-footer>
+
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 class Member extends HTMLElement{
+
     connectedCallback(){
         this.innerHTML = `
             <div id="layer" class="layer"></div>
@@ -10,11 +11,11 @@ class Member extends HTMLElement{
                     <div class="signin-title">登入會員帳戶</div>
         
                     <div class="signin-input-frame">
-                        <input id="signinEmail" class="signin-input" type="text" placeholder="輸入電子信箱">
+                        <input id="signinEmail" class="signin-input" type="text" placeholder="輸入電子信箱" value="">
                     </div>
         
                     <div class="signin-input-frame">
-                        <input id="signinPassword" class="signin-input" type="password" placeholder="輸入密碼">
+                        <input id="signinPassword" class="signin-input" type="password" placeholder="輸入密碼" value="">
                     </div>
         
                     <div class="signin-button-frame">
@@ -60,6 +61,7 @@ class Member extends HTMLElement{
             </div>
         `;
     };
+    
 };
 
 customElements.define("main-member", Member);

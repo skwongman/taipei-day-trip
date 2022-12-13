@@ -1,3 +1,8 @@
+import directToBookingPage from "../booking/directToBookingPage.js";
+import getCatData from "./getCatData.js";
+import categoryPopUpMenu from "./categoryPopUpMenu.js";
+
+
 let nextPage = [];
 let isLoading = false;
 const initLoadPageNum = 0;
@@ -13,9 +18,12 @@ showLoading(initLoadPageNum);
 loading.classList.add("showInMiddle");
 
 async function getData(page, keyword){
-    (keyword == "") ?
-    url = `http://52.205.132.168:3000/api/attractions?page=${page}` :
-    url = `http://52.205.132.168:3000/api/attractions?page=${page}&keyword=${keyword}`;
+    if(keyword == ""){
+        var url = `/api/attractions?page=${page}`;
+    }
+    else{
+        var url = `/api/attractions?page=${page}&keyword=${keyword}`;
+    };
 
     const response = await fetch(url);
     const data = await response.json();
@@ -40,7 +48,7 @@ function addDataToDOM(data){
         contentContainer.innerHTML += `
             <div class="content">
                 <div class="images" id="${attraction.id}">
-                    <a href="http://52.205.132.168:3000/attraction/${attraction.id}"><img src="${attraction.images[0]}"></a>
+                    <a href="/attraction/${attraction.id}"><img src="${attraction.images[0]}"></a>
                 <div>
             <div class="content-title">
                 <div>${attraction.name}</div>
@@ -57,12 +65,12 @@ function addDataToDOM(data){
 
 
 // Loading data.
-function showLoading(pageNum = nextPage) {
+function showLoading(pageNum = nextPage){
     loading.classList.add("show");
     setTimeout(() => {
         getData(pageNum, searchKeyword.value);
         isLoading = false;
-    }, 500);
+    }, 0);
 };
 
 
@@ -106,7 +114,7 @@ function searchButton(){
             setTimeout(() => {
                 contentContainer.innerHTML = "<div class='no-result'>請輸入景點名稱查詢。</div>";
                 loading.classList.remove("show");
-            }, 500);
+            }, 0);
         };
     });
 };
@@ -114,50 +122,12 @@ searchButton();
 
 
 // Fetch category API data on web initial load. 
-async function getCatData(){
-    const response = await fetch("http://52.205.132.168:3000/api/categories");
-    const catData = await response.json();
-    if(catData.error == true) console.log(catData.message);
-    addCatDataToDOM(catData.data);
-};
 getCatData();
 
 
-// Add fetched data to HTML DOM.
-function addCatDataToDOM(catData){
-    const searchContainer = document.querySelector("#category");
-    for(let category of catData){
-        isLoading = true;
-        searchContainer.innerHTML += `<div class="select" name="${category}">${category}</div>`;
-    };
-    selectCategory();
-};
-
-
-// Select category item event handling.
-function selectCategory(){
-    const results = document.querySelectorAll("div.select");
-    results.forEach((result) => {
-        result.addEventListener("click", (e) => {
-            searchKeyword.value = e.target.attributes.name.value;
-            categoryFrame.classList.toggle("is-active");
-        });
-    });
-};
-
-
 // Category Pop-up menu.
-function categoryPopUpMenu(){
-    searchKeyword.addEventListener("click", (e) => {
-        const categoryFrame = document.querySelector("#categoryFrame");
-        categoryFrame.classList.toggle("is-active");
-        e.stopPropagation();
-    });
-
-    window.addEventListener("click", (e) => {
-        if(e.target != document.querySelector("div.a")){
-            categoryFrame.classList.remove("is-active");
-        };
-    });
-};
 categoryPopUpMenu();
+
+
+// Check signin status before directing to the booking page.
+directToBookingPage();

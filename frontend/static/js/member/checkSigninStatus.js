@@ -9,7 +9,7 @@ export default  function checkSigninStatus(){
         return data;
     };
 
-    getUserData("http://52.205.132.168:3000/api/user/auth")
+    getUserData("/api/user/auth")
     .then(data => {
         if(data.data != null){
             signin.classList.add("inactive");

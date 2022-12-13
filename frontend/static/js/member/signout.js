@@ -10,12 +10,12 @@ export default function signoutSystem(){
             return data;
         };
     
-        deleteUserData("http://52.205.132.168:3000/api/user/auth", {
+        deleteUserData("/api/user/auth", {
             method: "DELETE"
         })
         .then(data => {
             if(data.ok){
-                (location.href.split("/")[3] == "attraction") ?
+                (location.href.split("/")[3] == "attraction" || location.href.split("/")[3] == "booking") ?
                 location.href = location.href :
                 location.href = "/";
             };

@@ -52,6 +52,39 @@ INSERT INTO `attractions` VALUES (1,1,'新北投溫泉區','養生溫泉','北�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `booking`
+--
+
+DROP TABLE IF EXISTS `booking`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking` (
+  `booking_id` bigint NOT NULL AUTO_INCREMENT,
+  `booking_attraction_id` int NOT NULL,
+  `booking_date` varchar(255) NOT NULL,
+  `booking_time` varchar(255) NOT NULL,
+  `booking_price` int NOT NULL,
+  `booking_member_id` bigint NOT NULL,
+  `booking_registration_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`booking_id`),
+  KEY `booking_attraction_id` (`booking_attraction_id`),
+  KEY `booking_member_id` (`booking_member_id`),
+  CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`booking_attraction_id`) REFERENCES `attractions` (`attraction_id`),
+  CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`booking_member_id`) REFERENCES `members` (`member_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking`
+--
+
+LOCK TABLES `booking` WRITE;
+/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+INSERT INTO `booking` VALUES (3,1,'2022-12-22','afternoon',2500,1,'2022-12-13 16:31:08');
+/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `members`
 --
 
@@ -74,7 +107,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (1,'test','test@123.com','11111111','2022-12-07 01:37:08');
+INSERT INTO `members` VALUES (1,'測試人員','123@123.com','$2b$12$WNHwX5EKZv12RQkRvmoM4.p5YqdVtoJ2yuGH7IQW5ICUJnMOn6ozq','2022-12-13 16:30:17');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -87,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-07  1:37:59
+-- Dump completed on 2022-12-13 16:32:25

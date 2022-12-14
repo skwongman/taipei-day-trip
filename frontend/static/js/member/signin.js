@@ -19,7 +19,7 @@ export default function signinSystem(memberInputVerification){
             return data;
         };
 
-        putUserData("http://52.205.132.168:3000/api/user/auth", {
+        putUserData("/api/user/auth", {
             method: "PUT",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify({
@@ -29,7 +29,7 @@ export default function signinSystem(memberInputVerification){
         })
         .then(data => {
             if(data.ok){
-                (location.href.split("/")[3] == "attraction") ?
+                (location.href.split("/")[3] == "attraction" || location.href.split("/")[3] == "booking") ?
                 location.href = location.href :
                 location.href = "/";
             };

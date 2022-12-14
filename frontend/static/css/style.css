@@ -9,7 +9,8 @@ html {
     min-height: 100%;
 }
 
-a:link, a:visited {
+a:link,
+a:visited {
     text-decoration: none;
 }
 
@@ -506,23 +507,10 @@ input[type="radio"]:checked:before {
     background: #448899;
 }
 
-.attraction-fee-am {
-    display: none;
-}
-
-.attraction-fee-am.active {
-    display: block;
+.attraction-fee {
     margin: 0px 5px 0px 5px;
 }
 
-.attraction-fee-pm {
-    display: none;
-}
-
-.attraction-fee-pm.active {
-    display: block;
-    margin: 0px 5px 0px 5px;
-}
 
 .attraction-button-background {
     display: flex;
@@ -769,6 +757,188 @@ input[type="radio"]:checked:before {
 }
 
 
+/* Booking */
+.booking-container {
+    display: none;
+}
+
+.booking-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking {
+    width: 1000px;
+}
+
+.booking-no-booking {
+    font-size: 16px;
+    color: #666666;
+    margin-left: 20px;
+}
+
+.booking-title {
+    font-weight: bold;
+    font-size: 19px;
+    margin: 0px 0px 20px 20px;
+    color: #666666;
+}
+
+.booking-information {
+    display: flex;
+}
+
+.booking-image-frame {
+    flex: none;
+    width: 30%;
+    margin: 20px;
+}
+
+.booking-image-frame > ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.booking-image > img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    box-sizing: border-box;
+}
+
+.booking-details {
+    flex: none;
+    width: 50%;
+    margin: 20px;
+}
+
+.booking-details-title{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #448899;
+}
+
+.booking-attraction > a {
+    color: #448899;
+}
+
+.booking-details-text {
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.contact-text.message {
+    font-weight: bold;
+}
+
+.booking-delete {
+    flex: auto;
+    justify-content: flex-end;
+    margin: 20px 10px 0px 10px;
+    height: 30px;
+    display: flex;
+}
+
+.booking-delete > img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.contact-frame,
+.credit-card-frame {
+    display: flex;
+    justify-content: center;
+}
+
+.contact,
+.credit-card {
+    width: 1000px;
+}
+
+.contact-title,
+.credit-card-title {
+    font-weight: bold;
+    font-size: 19px;
+    margin: 0px 20px 20px 20px;
+    color: #666666;
+}
+
+.contact-text,
+.credit-card-text {
+    font-size: 16px;
+    color: #666666;
+    margin: 0px 20px 20px 20px;
+}
+
+.contact-input,
+.credit-card-input {
+    width: 200px;
+    height: 38px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #E8E8E8;
+    outline: none !important;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.contact-input.valid,
+.credit-card-input.valid {
+    border: 2px solid green;
+}
+
+.contact-input.invalid,
+.credit-card-input.invalid {
+    border: 2px solid red;
+}
+
+.confirm-booking-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-booking {
+    width: 1000px;
+    text-align: right;
+}
+
+.confirm-amount {
+    margin: 10px 20px 10px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #666666;
+}
+
+.confirm-button-frame {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirm-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 173px;
+    height: 36px;
+    margin: 10px 20px 10px 20px;
+    padding: 0px;
+    border-radius: 5px;
+    background-color: #448899;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 19px;
+}
+
+.confirm-button:hover {
+    opacity: 0.8;
+}
+
 /* Tablet Devices Setting */
 @media(max-width: 1200px) {
 
@@ -810,6 +980,10 @@ input[type="radio"]:checked:before {
 
     .attraction-title {
         margin: 10px 15px 15px 10px;
+    }
+
+    .booking-title {
+        margin-left: 20px;
     }
 
 }
@@ -857,6 +1031,31 @@ input[type="radio"]:checked:before {
 
     .navigation-dots {
         transform: translateY(-40px);
+    }
+
+    .booking-information {
+        justify-content: center;
+    }
+
+    .booking-information {
+        flex-wrap: wrap;
+    }
+
+    .booking-image-frame {
+        width: 90%;
+    }
+
+    .booking-details {
+        width: 90%;
+    }
+
+    .booking-delete {
+        margin: 20px 19px 0px 19px;
+        width: 90%;
+    }
+
+    .booking-image > img {
+        height: 256px;
     }
 
 }

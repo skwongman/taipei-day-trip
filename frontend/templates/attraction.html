@@ -12,7 +12,7 @@
     <script src="/js/html/header.js" defer></script>
     <script src="/js/html/footer.js" defer></script>
     <script src="/js/html/member.js" defer></script>
-    <script src="/js/attraction.js" defer></script>
+    <script type="module" src="/js/attraction/attraction.js" defer></script>
     <script type="module" src="/js/member/member.js" defer></script>
 </head>
 
@@ -54,25 +54,24 @@
 
                         <div class="attraction-journey">
                             <span>選擇日期：</span>
-                            <span><input class="attraction-date" type="date"></span>
+                            <span><input id="attractionDate" class="attraction-date" type="date"></span>
                         </div>
 
                         <div class="attraction-journey">
                             <span>選擇時間：</span>
-                            <input type="radio" name="choose-time" id="attraction-am" checked><span class="attraction-am">上半天</span>
-                            <input type="radio" name="choose-time" id="attraction-pm"><span>下半天</span>
+                            <input type="radio" name="choose-time" id="attractionAM" checked><span class="attraction-am">上半天</span>
+                            <input type="radio" name="choose-time" id="attractionPM"><span>下半天</span>
                         </div>
 
                         <div class="attraction-journey">
                             <span>導覽費用：</span>
                             <span>新台幣</span>
-                                <span id="attraction-fee-am" class="attraction-fee-am active" value="2000">2000</span>
-                                <span id="attraction-fee-pm" class="attraction-fee-pm" value="2500">2500</span>
+                                <span id="attractionFee" class="attraction-fee" attractionTime="morning">2000</span>
                             <span>元</span>
                         </div>
 
                         <div class="attraction-button-background">
-                            <div class="attraction-button">開始預約行程</div>
+                            <div id="attractionButton" class="attraction-button">開始預約行程</div>
                         </div>
                     </div>
                 </div>

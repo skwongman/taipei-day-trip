@@ -17,7 +17,7 @@ class Categories:
             return ResponseMessage.api_categories_correct(category_data)
 
         except Exception as e:
-            print("Error: ", e)
+            print("Error(3): ", e)
             return ResponseMessage.api_categories_error(e)
 
         finally:

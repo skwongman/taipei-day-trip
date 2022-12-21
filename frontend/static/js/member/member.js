@@ -1,5 +1,5 @@
 import registerSigninMenu from "./registerSigninMenu.js";
-import inputVerification from "./verification.js";
+import inputVerification from "./inputVerification.js";
 import signupSystem from "./signup.js";
 import signinSystem from "./signin.js";
 import signoutSystem from "./signout.js";
@@ -12,10 +12,10 @@ registerSigninMenu();
 inputVerification();
 
 // Member signup.
-signupSystem(inputVerification);
+signupSystem();
 
 // Member signin.
-signinSystem(inputVerification);
+signinSystem();
 
 // Member signout.
 signoutSystem();

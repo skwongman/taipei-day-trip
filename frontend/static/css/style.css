@@ -757,79 +757,90 @@ input[type="radio"]:checked:before {
 }
 
 
-/* Booking */
+/* Booking and Partial Order */
 .booking-container {
     display: none;
 }
 
-.booking-frame {
+.booking-frame,
+.order-frame {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-.booking {
+.booking,
+.order {
     width: 1000px;
 }
 
 .booking-no-booking {
-    font-size: 16px;
-    color: #666666;
     margin-left: 20px;
+    color: #666666;
+    font-size: 16px;
 }
 
-.booking-title {
-    font-weight: bold;
-    font-size: 19px;
+.booking-title,
+.order-title {
     margin: 0px 0px 20px 20px;
     color: #666666;
+    font-size: 19px;
+    font-weight: bold;
 }
 
-.booking-information {
+.booking-information,
+.order-information {
     display: flex;
 }
 
-.booking-image-frame {
+.booking-image-frame,
+.order-image-frame {
     flex: none;
     width: 30%;
     margin: 20px;
 }
 
-.booking-image-frame > ul {
+.booking-image-frame > ul,
+.order-image-frame > ul {
     margin: 0px;
     padding: 0px;
     list-style: none;
 }
 
-.booking-image > img {
+.booking-image > img,
+.order-image > img {
+    box-sizing: border-box;
     width: 100%;
     height: 200px;
     object-fit: cover;
     object-position: center;
-    box-sizing: border-box;
 }
 
-.booking-details {
+.booking-details,
+.order-details {
     flex: none;
     width: 50%;
     margin: 20px;
 }
 
-.booking-details-title{
-    font-weight: bold;
-    font-size: 16px;
+.booking-details-title,
+.order-details-title {
     margin-bottom: 30px;
     color: #448899;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.booking-attraction > a {
+.booking-attraction > a,
+.order-attraction > a {
     color: #448899;
 }
 
-.booking-details-text {
-    font-size: 16px;
-    color: #666666;
+.booking-details-text,
+.order-details-text {
     margin-bottom: 20px;
+    color: #666666;
+    font-size: 16px;
 }
 
 .contact-text.message {
@@ -837,16 +848,16 @@ input[type="radio"]:checked:before {
 }
 
 .booking-delete {
+    display: flex;
     flex: auto;
     justify-content: flex-end;
-    margin: 20px 10px 0px 10px;
     height: 30px;
-    display: flex;
+    margin: 20px 10px 0px 10px;
 }
 
 .booking-delete > img:hover {
-    opacity: 0.8;
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .contact-frame,
@@ -862,45 +873,45 @@ input[type="radio"]:checked:before {
 
 .contact-title,
 .credit-card-title {
-    font-weight: bold;
-    font-size: 19px;
     margin: 0px 20px 20px 20px;
     color: #666666;
+    font-size: 19px;
+    font-weight: bold;
 }
 
 .contact-text,
 .credit-card-text {
-    font-size: 16px;
-    color: #666666;
+    display: flex;
+    align-items: center;
     margin: 0px 20px 20px 20px;
+    color: #666666;
+    font-size: 16px;
 }
 
 .contact-input,
 .credit-card-input {
+    box-sizing: border-box;
     width: 200px;
     height: 38px;
-    box-sizing: border-box;
-    border-radius: 5px;
+    padding: 10px;
     border: 1px solid #E8E8E8;
+    border-radius: 5px;
     outline: none !important;
     font-size: 16px;
-    padding: 10px;
 }
 
-.contact-input.valid,
-.credit-card-input.valid {
-    border: 2px solid green;
+.contact-input.valid {
+    color: green;
 }
 
-.contact-input.invalid,
-.credit-card-input.invalid {
-    border: 2px solid red;
+.contact-input.invalid {
+    color: red;
 }
 
 .confirm-booking-frame {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .confirm-booking {
@@ -910,9 +921,9 @@ input[type="radio"]:checked:before {
 
 .confirm-amount {
     margin: 10px 20px 10px 20px;
-    font-weight: bold;
-    font-size: 16px;
     color: #666666;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .confirm-button-frame {
@@ -930,14 +941,67 @@ input[type="radio"]:checked:before {
     padding: 0px;
     border-radius: 5px;
     background-color: #448899;
-    cursor: pointer;
     color: #FFFFFF;
     font-size: 19px;
+    cursor: pointer;
 }
 
 .confirm-button:hover {
     opacity: 0.8;
 }
+
+/* Order */
+.order-container {
+    display: none;
+}
+
+.order-number {
+    margin-left: 20px;
+    color: #448899;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.order-status {
+    margin: 20px 0px 0px 20px;
+    font-weight: bold;
+}
+
+.order-status.success {
+    color: green;
+}
+
+.order-status.unsuccess {
+    color: red;
+}
+
+.order-image-frame {
+    flex: none;
+    width: 40%;
+    margin: 20px;
+}
+
+.order-image > img {
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.order-details-title {
+    margin-bottom: 15px;
+    color: #448899;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.order-remarks {
+    margin: 20px;
+    color: red;
+    font-weight: bold;
+}
+
 
 /* Tablet Devices Setting */
 @media(max-width: 1200px) {
@@ -982,7 +1046,8 @@ input[type="radio"]:checked:before {
         margin: 10px 15px 15px 10px;
     }
 
-    .booking-title {
+    .booking-title,
+    .order-title {
         margin-left: 20px;
     }
 
@@ -1033,28 +1098,29 @@ input[type="radio"]:checked:before {
         transform: translateY(-40px);
     }
 
-    .booking-information {
+    .booking-information,
+    .order-information {
+        flex-wrap: wrap;
         justify-content: center;
     }
 
-    .booking-information {
-        flex-wrap: wrap;
-    }
-
-    .booking-image-frame {
+    .booking-image-frame,
+    .order-image-frame {
         width: 90%;
     }
 
-    .booking-details {
+    .booking-details,
+    .order-details {
         width: 90%;
     }
 
     .booking-delete {
-        margin: 20px 19px 0px 19px;
         width: 90%;
+        margin: 20px 19px 0px 19px;
     }
 
-    .booking-image > img {
+    .booking-image > img,
+    .order-image > img {
         height: 256px;
     }
 

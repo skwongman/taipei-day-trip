@@ -7,35 +7,37 @@ class Attraction_id:
         try:
             connection = mypool.get_connection()
             cursor = connection.cursor()
-            insert_query = "SELECT * FROM attractions WHERE attraction_id = %s;"
+            insert_query = (
+                """SELECT attraction_id, name, category, description, address,
+                    transport, mrt, lat, lng, images FROM attractions
+                        WHERE attraction_id = %s;"""
+            )
             insert_value = (attractionId,)
             cursor.execute(insert_query, insert_value)
-            results = cursor.fetchall()
+            result = cursor.fetchone()
 
-            attraction_data = []
-            for result in results:
-                attraction_data.append(
-                    {
-                        "id": result[1],
-                        "name": result[2],
-                        "category": result[3],
-                        "description": result[4],
-                        "address": result[5],
-                        "transport": result[6],
-                        "mrt": result[7],
-                        "lat": result[8],
-                        "lng": result[9],
-                        "images": eval(result[10])
-                    }
-                )
-
-            if len(results) == 0:
+            if result == None:
                 return ResponseMessage.api_attraction_id_not_found()
+
+            attraction_data = (
+                {
+                    "id": result[0],
+                    "name": result[1],
+                    "category": result[2],
+                    "description": result[3],
+                    "address": result[4],
+                    "transport": result[5],
+                    "mrt": result[6],
+                    "lat": result[7],
+                    "lng": result[8],
+                    "images": eval(result[9])
+                }
+            )
 
             return ResponseMessage.api_attraction_id_correct(attraction_data)
 
         except Exception as e:
-            print("Error: ", e)
+            print("Error(1): ", e)
             return ResponseMessage.api_attraction_id_error(e)
 
         finally:

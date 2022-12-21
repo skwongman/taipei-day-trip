@@ -13,7 +13,7 @@ class MemberSystem:
         try:
             connection = mypool.get_connection()
             cursor = connection.cursor()
-            insert_query = "SELECT * FROM members WHERE email = %s;"
+            insert_query = "SELECT email FROM members WHERE email = %s;"
             insert_value = (email,)
             cursor.execute(insert_query, insert_value)
             result = cursor.fetchone()

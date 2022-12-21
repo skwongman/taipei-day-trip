@@ -17,7 +17,7 @@ class Booking:
             return ResponseMessage.api_delete_booking_correct()
 
         except Exception as e:
-            print("Error: ", e)
+            print("Error(5): ", e)
             return ResponseMessage.api_delete_booking_error(e)
 
         finally:

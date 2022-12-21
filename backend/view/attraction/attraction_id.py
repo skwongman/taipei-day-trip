@@ -2,7 +2,7 @@ from flask import *
 
 class ResponseMessage:
     def api_attraction_id_correct(attraction_data):
-        return jsonify({"data": attraction_data[0]}), 200
+        return jsonify({"data": attraction_data}), 200
     
     def api_attraction_id_not_found():
         return jsonify({"error": True, "message": "Attraction ID Not Found"}), 400

@@ -11,11 +11,12 @@ class Attraction:
         try:
             connection = mypool.get_connection()
             cursor = connection.cursor()
-            insert_query = ("""
-                SELECT * FROM attractions
-                WHERE category = %s OR name LIKE %s OR name LIKE %s OR name LIKE %s 
-                ORDER BY attraction_id LIMIT %s, %s;
-            """)
+            insert_query = (
+                """SELECT attraction_id, name, category, description, address,
+                    transport, mrt, lat, lng, images FROM attractions
+                        WHERE category = %s OR name LIKE %s OR name LIKE %s OR name LIKE %s 
+                            ORDER BY attraction_id LIMIT %s, %s;"""
+                )
 
             # Function to check the next page information.
             def results(next_page_number = 0):
@@ -31,16 +32,16 @@ class Attraction:
             for result in results():
                 attraction_data.append(
                     {
-                        "id": result[1],
-                        "name": result[2],
-                        "category": result[3],
-                        "description": result[4],
-                        "address": result[5],
-                        "transport": result[6],
-                        "mrt": result[7],
-                        "lat": result[8],
-                        "lng": result[9],
-                        "images": eval(result[10])
+                        "id": result[0],
+                        "name": result[1],
+                        "category": result[2],
+                        "description": result[3],
+                        "address": result[4],
+                        "transport": result[5],
+                        "mrt": result[6],
+                        "lat": result[7],
+                        "lng": result[8],
+                        "images": eval(result[9])
                     }
                 )
 
@@ -53,7 +54,7 @@ class Attraction:
             return ResponseMessage.api_attractions_correct(next_page, attraction_data)
 
         except Exception as e:
-            print("Error: ", e)
+            print("Error(2): ", e)
             return ResponseMessage.api_attractions_error(e)
 
         finally:

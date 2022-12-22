@@ -7,6 +7,7 @@ delete_booking = Blueprint("delete_booking", __name__)
 
 @delete_booking.route('/api/booking', methods = ["DELETE"])
 def api_booking_delete():
+    # Not allow to access this API endpoint without login.
     try:
         MemberID.get_member_id()
     except Exception:

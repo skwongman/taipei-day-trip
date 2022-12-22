@@ -37,7 +37,7 @@ class UserInput:
         order_contact_phone = result[2]
         order_contact_name = result[3]
         order_contact_email = result[4]
-        verify_order_contact_phone = re.fullmatch(r"[\d]{9}", order_contact_phone)
+        verify_order_contact_phone = re.fullmatch(r"[\d]{10}", order_contact_phone)
         verify_order_contact_name = re.fullmatch(r"[\u4E00-\u9FFF\u3400-\u4DBF\a-z\d]{1,20}", order_contact_name)
         verify_order_contact_email = re.fullmatch(r"^([\w-]+)@([a-z\d-]+)\.([a-z]{2,8})([\.a-z]{2,8})?$", order_contact_email)
         return verify_order_contact_phone, verify_order_contact_name, verify_order_contact_email
@@ -52,7 +52,7 @@ class PaymentAPI:
             "prime": order_data["order_prime_number"],
             "partner_key": partner_key,
             "merchant_id": merchant_id,
-            "details":"Attraction Order Booking Fee",
+            "details": "Attraction Order Booking Fee",
             "amount": order_data["order_price"],
             "currency": "TWD",
             "cardholder": {

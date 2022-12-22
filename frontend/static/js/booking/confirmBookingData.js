@@ -1,13 +1,17 @@
-import bookingData from "./bookingData.js";
+import deleteBookingData from "./deleteBookingData.js";
 
 export default function confirmBookingData(cardPrimeNumber){
 
     const model = {
         init: async function(){
-            const data = await bookingData();
-            if(!data.data) return null;
-            const orderData = data.data;
-        
+            const bookingFee = document.querySelector("#bookingFee").textContent.slice(4,8);
+            const bookingAttractionID = document.querySelector("#bookingAttraction").firstChild.href.split("/").pop();
+            const bookingAttractionName = document.querySelector("#bookingAttraction").innerText.split(" ").pop();
+            const bookingVenue = document.querySelector("#bookingVenue").textContent;
+            const bookingImage = document.querySelector("#bookingImage").firstChild.src;
+            const bookingDate = document.querySelector("#bookingDate").textContent;
+            const bookingTime = document.querySelector("#bookingTime").textContent;
+
             async function getOrderData(url, method){
                 const response = await fetch(url, method);
                 const data = await response.json();
@@ -20,16 +24,16 @@ export default function confirmBookingData(cardPrimeNumber){
                 body: JSON.stringify({
                     "prime": cardPrimeNumber,
                     "order": {
-                        "price": orderData.price,
+                        "price": bookingFee,
                         "trip": {
                             "attraction": {
-                                "id": orderData.attraction.id,
-                                "name": orderData.attraction.name,
-                                "address": orderData.attraction.address,
-                                "image": orderData.attraction.image
+                                "id": bookingAttractionID,
+                                "name": bookingAttractionName,
+                                "address": bookingVenue,
+                                "image": bookingImage
                             },
-                            "date": orderData.date,
-                            "time": orderData.time
+                            "date": bookingDate,
+                            "time": bookingTime
                         },
                         "contact": {
                             "name": contactName.value,
@@ -49,12 +53,13 @@ export default function confirmBookingData(cardPrimeNumber){
     };
 
     const view = {
-        render: function(data){
+        render: async function(data){
             if(data.message == "403 Forbidden."){
                 location.href = "/";
             };
 
             if(data.data != null || data.message == "Transaction error."){
+                await deleteBookingData()();
                 location.href = "/thankyou?number=" + data.data.number;
             };
 

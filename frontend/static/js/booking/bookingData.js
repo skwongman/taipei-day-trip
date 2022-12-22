@@ -15,8 +15,6 @@ export default function bookingData(){
             .catch((error) => {
                 viewError.render(error);
             });
-            
-            return getBookingData("/api/booking");
         }
     };
 
@@ -63,7 +61,5 @@ export default function bookingData(){
         }
     };
     controller.init();
-
-    return model.init();
 
 };

@@ -10,43 +10,39 @@ class Attraction:
 
         try:
             connection = mypool.get_connection()
-            cursor = connection.cursor()
+            cursor = connection.cursor(dictionary = True)
             insert_query = (
-                """SELECT attraction_id, name, category, description, address,
-                    transport, mrt, lat, lng, images FROM attractions
+                """SELECT * FROM attractions
                         WHERE category = %s OR name LIKE %s OR name LIKE %s OR name LIKE %s 
                             ORDER BY attraction_id LIMIT %s, %s;"""
-                )
+            )
 
-            # Function to check the next page information.
-            def results(next_page_number = 0):
-                insert_value = (
-                    keyword, handled_keyword1, handled_keyword2, handled_keyword3,
-                    ((page + next_page_number) * page_interval), page_interval
-                )
-                cursor.execute(insert_query, insert_value)
-                results = cursor.fetchall()
-                return results
+            insert_value = (keyword, handled_keyword1, handled_keyword2, handled_keyword3, ((page) * page_interval), page_interval)
+            cursor.execute(insert_query, insert_value)
+            results = cursor.fetchall()
+
+            next_page_insert_value = (keyword, handled_keyword1, handled_keyword2, handled_keyword3, ((page + next_page_number) * page_interval), page_interval)
+            cursor.execute(insert_query, next_page_insert_value)
+            next_page_results = cursor.fetchall()
 
             attraction_data = []
-            for result in results():
+            for result in results:
                 attraction_data.append(
                     {
-                        "id": result[0],
-                        "name": result[1],
-                        "category": result[2],
-                        "description": result[3],
-                        "address": result[4],
-                        "transport": result[5],
-                        "mrt": result[6],
-                        "lat": result[7],
-                        "lng": result[8],
-                        "images": eval(result[9])
+                        "id": result["attraction_id"],
+                        "name": result["name"],
+                        "category": result["category"],
+                        "description": result["description"],
+                        "address": result["address"],
+                        "transport": result["transport"],
+                        "mrt": result["mrt"],
+                        "lat": result["lat"],
+                        "lng": result["lng"],
+                        "images": eval(result["images"])
                     }
                 )
 
-            # Input page no. (i.e. 1) in the above function to check the next page information.
-            if len(results(next_page_number)) == 0:
+            if len(next_page_results) == 0:
                 next_page = None
             else:
                 next_page = (page + next_page_number)

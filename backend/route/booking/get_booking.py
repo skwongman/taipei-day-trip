@@ -7,6 +7,7 @@ get_booking = Blueprint("get_booking", __name__)
 
 @get_booking.route('/api/booking', methods = ["GET"])
 def api_booking():
+    # Not allow to access this API endpoint without login.
     try:
         MemberID.get_member_id()
     except Exception:

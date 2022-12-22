@@ -17,7 +17,3 @@ def booking():
 @pages.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
-
-@pages.route("/test")
-def test():
-	return render_template("test.html")

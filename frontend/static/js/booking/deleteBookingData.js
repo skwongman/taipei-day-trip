@@ -2,22 +2,23 @@ export default function deleteBookingData(){
 
     const model = {
         init: function(){            
-            document.querySelector("#bookingDelete").addEventListener("click", () => {
-                async function getDeleteBookingData(url, method){
-                    const response = await fetch(url, method);
-                    const data = await response.json();
-                    return data;
-                };
-        
-                getDeleteBookingData("/api/booking", {
-                    method: "DELETE"
-                })
-                .then(data => {
-                    view.render(data);
-                })
-                .catch((error) => {
-                    view.renderError(error);
-                });
+            document.querySelector("#bookingDelete").addEventListener("click", model.handleDeleteBooking);
+        },
+        handleDeleteBooking: async function(){
+            async function getDeleteBookingData(url, method){
+                const response = await fetch(url, method);
+                const data = await response.json();
+                return data;
+            };
+    
+            await getDeleteBookingData("/api/booking", {
+                method: "DELETE"
+            })
+            .then(data => {
+                view.render(data);
+            })
+            .catch((error) => {
+                view.renderError(error);
             });
         }
     };
@@ -46,35 +47,6 @@ export default function deleteBookingData(){
     };
     controller.init();
 
-    /*
-    const bookingDelete = document.querySelector("#bookingDelete");
-    const bookingContainer = document.querySelector("#bookingContainer");
-    const bookingNoBooking = document.querySelector("#bookingNoBooking");
-    
-    bookingDelete.addEventListener("click", () => {
-        async function getDeleteBookingData(url, method){
-            const response = await fetch(url, method);
-            const data = await response.json();
-            return data;
-        };
+    return model.handleDeleteBooking;
 
-        getDeleteBookingData("/api/booking", {
-            method: "DELETE"
-        })
-        .then(data => {
-            if(data.message == "403 Forbidden."){
-                location.href = "/";
-            };
-
-            if(data.ok){
-                bookingContainer.style.display = "none";
-                bookingNoBooking.style.display = "block";
-                location.href = location.href;
-            };
-        })
-        .catch((error) => {
-            console.log("Error:", error);
-        });
-    });
-    */
 };

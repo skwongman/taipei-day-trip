@@ -1,18 +1,14 @@
-import addAttractionDatatoDOM from "./addAttractionDataToDOM.js";
-
-export default function getAttractionData(){
+export default function displayUsername(){
 
     const model = {
         init: function(){
-            const attractionID = location.href.split("/").pop();
-
-            async function getData(url){
+            async function getUsernameData(url){
                 const response = await fetch(url);
                 const data = await response.json();
-                return data;
+                return data.data;
             };
-        
-            getData("/api/attraction/" + attractionID)
+            
+            getUsernameData("/api/user/auth")
             .then(data => {
                 view.render(data);
             })
@@ -24,16 +20,16 @@ export default function getAttractionData(){
 
     const view = {
         render: function(data){
-            if(data.message == "Attraction ID Not Found"){
-                location.href = "/";
-            };
-
-            if(data){
-                addAttractionDatatoDOM(data.data);
+            if(data != null){
+                const username = document.querySelector("#username");
+                username.textContent = `您好，${data.name}，您已預訂的行程如下：`;
             };
         },
         renderError: function(error){
-            console.log("Error(12): " + error);
+            if(error.message == "data.data is null"){
+                return null;
+            };
+            console.log("Error(10): " + error);
         }
     };
 

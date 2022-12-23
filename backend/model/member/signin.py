@@ -15,8 +15,8 @@ class MemberSystem:
 
         try:
             connection = mypool.get_connection()
-            cursor = connection.cursor()
-            insert_query = "SELECT member_id, password FROM members WHERE email = %s;"
+            cursor = connection.cursor(dictionary = True)
+            insert_query = "SELECT * FROM members WHERE email = %s;"
             insert_value = (email,)
             cursor.execute(insert_query, insert_value)
             result = cursor.fetchone()
@@ -24,7 +24,7 @@ class MemberSystem:
             if result == None:
                 return ResponseMessage.signin_incorrect()
 
-            member_data = {"member_id": result[0], "password": result[1]}
+            member_data = {"member_id": result["member_id"], "password": result["password"]}
             check_hashed_password = check_password_hash(member_data["password"], password)
 
             if not check_hashed_password:

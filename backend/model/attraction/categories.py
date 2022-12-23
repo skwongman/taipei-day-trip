@@ -6,18 +6,16 @@ class Categories:
     def api_categories():
         try:
             connection = mypool.get_connection()
-            cursor = connection.cursor()
-            cursor.execute("SELECT category FROM attractions GROUP BY category ORDER BY attraction_id;")
+            cursor = connection.cursor(dictionary = True)
+            cursor.execute("SELECT * FROM attractions GROUP BY category ORDER BY attraction_id;")
             results = cursor.fetchall()
             category_data = []
-
             for result in results:
-                category_data.append(result[0])
-                
+                category_data.append(result["category"])
             return ResponseMessage.api_categories_correct(category_data)
 
         except Exception as e:
-            print("Error: ", e)
+            print("Error(3): ", e)
             return ResponseMessage.api_categories_error(e)
 
         finally:

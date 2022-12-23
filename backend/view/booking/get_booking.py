@@ -12,7 +12,10 @@ class MemberID:
 
 class ResponseMessage:
     def get_booking_correct(attraction_data):
-        return jsonify({"data": attraction_data[0]}), 200
+        return jsonify({"data": attraction_data}), 200
+    
+    def get_booking_no_data():
+        return jsonify({"data": None}), 200
 
     def get_booking_forbidden():
         return jsonify({"error": True, "message": "403 Forbidden."}), 403

@@ -9,12 +9,12 @@ class MemberSystem:
 
         try:
             connection = mypool.get_connection()
-            cursor = connection.cursor()
-            insert_query = "SELECT member_id, name, email FROM members WHERE member_id = %s;"
+            cursor = connection.cursor(dictionary = True)
+            insert_query = "SELECT * FROM members WHERE member_id = %s;"
             insert_value = (member_id,)
             cursor.execute(insert_query, insert_value)
             result = cursor.fetchone()
-            member_data = {"id": result[0], "name": result[1], "email": result[2]}
+            member_data = {"id": result["member_id"], "name": result["name"], "email": result["email"]}
             return ResponseMessage.signin_status_correct(member_data)
 
         except Exception as e:

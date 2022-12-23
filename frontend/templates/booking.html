@@ -14,6 +14,7 @@
     <script src="/js/html/member.js" defer></script>
     <script type="module" src="/js/booking/booking.js" defer></script>
     <script type="module" src="/js/member/member.js" defer></script>
+    <script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
 </head>
 
 <body>
@@ -43,9 +44,7 @@
 
                     <div class="booking-image-frame">
                         <ul>
-                            <li id="bookingImage" class="booking-image">
-                                
-                            </li>
+                            <li id="bookingImage" class="booking-image"></li>
                         </ul>
                     </div>
 
@@ -86,7 +85,7 @@
                     <input id="contactEmail" class="contact-input" name="email" type="text" value="">
                 </div>
                 <div class="contact-text">手機號碼：
-                    <input id="contactNum" class="contact-input" name="contact" type="text" maxlength="9">
+                    <input id="contactNum" class="contact-input" name="contact" type="text" maxlength="10" value="">
                 </div>
                 <div class="contact-text message">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
             </div>
@@ -98,13 +97,13 @@
             <div class="credit-card">
                 <div class="credit-card-title">信用卡付款資訊</div>
                 <div class="credit-card-text">卡片號碼：
-                    <input id="creditCardNum" class="credit-card-input" name="cardNum" type="text" pattern="[\d]{19}" maxlength="19" placeholder="**** **** **** ****">
+                    <div id="creditCardNum" class="credit-card-input"></div>
                 </div>
                 <div class="credit-card-text">過期時間：
-                    <input id="creditCardDate" class="credit-card-input" name="cardDate" type="text" maxlength="5" placeholder="MM / YY">
+                    <div id="creditCardDate" class="credit-card-input"></div>
                 </div>
                 <div class="credit-card-text">驗證密碼：
-                    <input id="creditCardCVV" class="credit-card-input" name="cardCVV" type="text" maxlength="3" placeholder="CVV">
+                    <div id="creditCardCVV" class="credit-card-input"></div>
                 </div>
             </div>
         </div>

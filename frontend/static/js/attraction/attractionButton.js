@@ -1,47 +1,63 @@
 // Attraction Button.
 export default function handleAttractionButton(){
 
-    const attractionButton = document.querySelector("#attractionButton");
-    const attractionID = location.href.split("/").pop();
-    const layer = document.querySelector("#layer");
-    const signinFrame = document.querySelector("#signin-frame");
-    
-    attractionButton.addEventListener("click", () => {
-        async function getBookingData(url, method){
-            const response = await fetch(url, method);
-            const data = await response.json();
-            return data;
-        };
-    
-        getBookingData("/api/booking", {
-            method: "POST",
-            headers : {"Content-type": "application/json"},
-            body: JSON.stringify({
-                "bookingID": attractionID,
-                "bookingDate": attractionDate.value,
-                "bookingTime": attractionFee.attributes.attractionTime.value,
-                "bookingFee": attractionFee.textContent
-            })
-        })
-        .then(data => {
+    const model = {
+        init: function(){
+            const attractionButton = document.querySelector("#attractionButton");
+            const attractionID = location.href.split("/").pop();
+
+            async function getBookingData(url, method){
+                const response = await fetch(url, method);
+                const data = await response.json();
+                return data;
+            };
+
+            attractionButton.addEventListener("click", () => {           
+                getBookingData("/api/booking", {
+                    method: "POST",
+                    headers : {"Content-type": "application/json"},
+                    body: JSON.stringify({
+                        "attractionId": attractionID,
+                        "date": attractionDate.value,
+                        "time": attractionFee.attributes.attractionTime.value,
+                        "price": attractionFee.textContent
+                    })
+                })
+                .then(data => {
+                    view.render(data);
+                })
+                .catch((error) => {
+                    view.renderError(error);
+                });
+            });
+        }
+    };
+
+    const view = {
+        render: function(data){
             if(data.message == "403 Forbidden."){
-                layer.classList.add("active");
-                signinFrame.classList.add("active");
-            }
-            else if(data.message == "Please select the booking date."){
+                document.querySelector("#layer").classList.add("active");
+                document.querySelector("#signin-frame").classList.add("active");
+            };
+
+            if(data.message == "Please select the booking date."){
                 alert("請選擇行程日期！");
-            }
-            else if(data.message == "Please select the booking date from tomorrow or later."){
-                alert("請選擇明天或以後的行程日期！");
             };
 
             if(data.ok == true){
                 location.href = "/booking";
             };
-        })
-        .catch((error) => {
-            console.log("Error: " + error);
-        });
-    });
-    
+        },
+        renderError: function(error){
+            console.log("Error(1): " + error);
+        }
+    };
+
+    const controller = {
+        init: function(){
+            model.init();
+        }
+    };
+    controller.init();
+
 };

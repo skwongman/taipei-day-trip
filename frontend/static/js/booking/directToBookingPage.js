@@ -1,33 +1,49 @@
 export default function directToBookingPage(){
 
-    const booking = document.querySelector("#booking");
-    const layer = document.querySelector("#layer");
-    const signinFrame = document.querySelector("#signin-frame");
-    
-    booking.addEventListener("click", () => {
-        async function getUsernameData(url){
-            const response = await fetch(url);
-            const data = await response.json();
-            return data;
-        };
-        
-        getUsernameData("/api/user/auth")
-        .then(data => {
+    const model = {
+        init: function(){
+            document.querySelector("#booking").addEventListener("click", () => {
+                async function getUsernameData(url){
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    return data;
+                };
+                
+                getUsernameData("/api/user/auth")
+                .then(data => {
+                    view.render(data);
+                })
+                .catch((error) => {
+                    view.renderError(error);
+                });
+            });
+        }
+    };
+
+    const view = {
+        render: function(data){
             if(data.data){
                 location.href = "/booking";
             };
     
             if(data.data == null){
-                layer.classList.add("active");
-                signinFrame.classList.add("active");
+                document.querySelector("#layer").classList.add("active");
+                document.querySelector("#signin-frame").classList.add("active");
             };
-        })
-        .catch((error) => {
+        },
+        renderError: function(error){
             if(error.message == "data.data is null"){
                 return null;
             };
-            console.log("Error: " + error);
-        });
-    });
-    
+            console.log("Error(4): " + error);
+        }
+    };
+
+    const controller = {
+        init: function(){
+            model.init();
+        }
+    };
+    controller.init();
+
 };

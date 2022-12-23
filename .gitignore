@@ -1,5 +1,6 @@
 # My gitignore
 archived
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

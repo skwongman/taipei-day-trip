@@ -43,9 +43,9 @@ async function getData(page, keyword){
 
 
 // Add fetched data to HTML DOM.
-function addDataToDOM(data){
-    for(let attraction of data){
-        contentContainer.innerHTML += `
+function addDataToDOM(data) {
+    data.forEach(attraction => {
+    contentContainer.innerHTML += `
             <div class="content">
                 <div class="images" id="${attraction.id}">
                     <a href="/attraction/${attraction.id}"><img src="${attraction.images[0]}"></a>
@@ -58,10 +58,10 @@ function addDataToDOM(data){
                 <div class="content-text-right">${attraction.category}</div>
             </div>
         `;
-    };
+    });
 
     loading.classList.remove("show");
-};
+}
 
 
 // Loading data.

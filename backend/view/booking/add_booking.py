@@ -12,10 +12,10 @@ class MemberID:
 
 class UserInput:
     def booking_input():
-        booking_id = request.json.get("bookingID")
-        booking_date = request.json.get("bookingDate")
-        booking_time = request.json.get("bookingTime")
-        booking_fee = request.json.get("bookingFee")
+        booking_id = request.json.get("attractionId")
+        booking_date = request.json.get("date")
+        booking_time = request.json.get("time")
+        booking_fee = request.json.get("price")
         return booking_id, booking_date, booking_time, booking_fee
 
 class ResponseMessage:
@@ -24,9 +24,6 @@ class ResponseMessage:
     
     def add_booking_no_date():
         return jsonify({"error": True, "message": "Please select the booking date."}), 400
-
-    def add_booking_incorrect_date():
-        return jsonify({"error": True, "message": "Please select the booking date from tomorrow or later."}), 400
 
     def add_booking_forbidden():
         return jsonify({"error": True, "message": "403 Forbidden."}), 403

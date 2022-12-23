@@ -23,7 +23,7 @@ class Booking:
             return ResponseMessage.add_booking_correct()
 
         except Exception as e:
-            print("Error: ", e)
+            print("Error(4): ", e)
             return ResponseMessage.add_booking_error(e)
 
         finally:

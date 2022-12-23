@@ -14,9 +14,9 @@ class ResponseMessage():
     def signin_status_correct(memberData):
         return jsonify({"data": memberData}), 200
 
-    def signin_status_token():
+    def signin_status_forbidden():
         return jsonify({"data": None}), 403
 
     def signin_status_error(e):
-        print("Error: ", e)
+        print("Error(9): ", e)
         return jsonify({"error": True, "message": str(e)}), 500

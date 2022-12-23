@@ -23,5 +23,5 @@ class ResponseMessage:
         return jsonify({"error": True, "message": "Incorrect referer."}), 400
 
     def signin_error(e):
-        print("Error: ", e)
+        print("Error(10): ", e)
         return jsonify({"error": True, "message": str(e)}), 500

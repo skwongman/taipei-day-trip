@@ -24,7 +24,7 @@ export default function getAttractionData(){
 
     const view = {
         render: function(data){
-            if(data.message == "Attraction ID Not Found"){
+            if(data.message == "Attraction ID Not Found."){
                 location.href = "/";
             };
 

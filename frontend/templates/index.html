@@ -8,12 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台北一日遊</title>
     <link rel="shortcut icon" href="#"/>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script src="/js/html/header.js" defer></script>
-    <script src="/js/html/footer.js" defer></script>
-    <script src="/js/html/member.js" defer></script>
-    <script type="module" src="/js/index/index.js" defer></script>
-    <script type="module" src="/js/member/member.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
 </head>
 
 <body>
@@ -22,6 +18,10 @@
     <main-header></main-header>
 
 
+    <!-- Member Register and Signin -->
+    <main-member></main-member>
+
+    
     <!-- Banner and Search -->
     <div class="banner">
         <div class="banner-inner-frame">
@@ -44,20 +44,21 @@
     </div>
 
 
-    <!-- Member Register and Signin -->
-    <main-member></main-member>
-
-
     <!-- Footer -->
     <main-footer></main-footer>
 
 
     <!-- Loading Effect -->
-    <div class="loading">
-        <div class="ball"></div>
-        <div class="ball"></div>
-        <div class="ball"></div>
-    </div>
+    <main-loading-effect></main-loading-effect>
+
+
+    <!-- Javascript -->
+    <script src="/js/html/header.js"></script>
+    <script src="/js/html/footer.js"></script>
+    <script src="/js/html/member.js"></script>
+    <script src="/js/html/loadingEffect.js"></script>
+    <script type="module" src="/js/index/index.js"></script>
+    <script type="module" src="/js/member/member.js"></script>
 
 </body>
 

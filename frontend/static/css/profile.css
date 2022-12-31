@@ -1,0 +1,397 @@
+/* Profile */
+.profile-container {
+    display: none;
+}
+
+.profile-outer-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-frame {
+    display: flex;
+    align-items: center;
+    width: 600px;
+}
+
+.profile-header {
+    margin: 20px 10px 10px 10px;
+    color: #448899;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+
+/* Separator */
+.profile-separator-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+}
+
+.profile-separator {
+    width: 1200px;
+    margin: 20px 10px 20px 10px;
+    border: 0.5px solid #E8E8E8;
+}
+
+.profile-sub-header {
+    flex: none;
+    width: 70%;
+}
+
+.profile-picture {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    overflow: hidden;
+    border: 3px solid #448899;
+    border-radius: 50%;
+}
+
+.picture-change-picture {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    cursor: pointer;
+}
+
+.profile-picture-size {
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.profile-title {
+    margin: 10px;
+    color: #666666;
+}
+
+.profile-title-text {
+    margin: 10px;
+    color: #666666;
+    font-weight: bold;
+}
+
+.profile-button-frame {
+    display: flex;
+    flex: none;
+    justify-content: flex-end;
+    width: 30%;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #448899;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-button:hover {
+    opacity: 0.8;
+}
+
+.profile-home-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 40px;
+    margin: 30px;
+    border-radius: 5px;
+    background-color: #448899;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-home-button:hover {
+    opacity: 0.8;
+}
+
+
+/* Information Change */
+.email-change-container,
+.name-change-container,
+.password-change-container,
+.picture-change-container {
+    display: none;
+}
+
+.email-change-frame,
+.name-change-frame,
+.password-change-frame,
+.picture-change-frame {
+    display: flex;
+    justify-content: center;
+}
+
+.email-change,
+.name-change,
+.password-change {
+    width: 600px;
+}
+
+.email-change-header,
+.name-change-header,
+.password-change-header,
+.picture-change-header {
+    margin: 20px 10px 30px 10px;
+    color: #448899;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.email-change-title,
+.name-change-title,
+.password-change-title {
+    margin: 20px 10px 5px 10px;
+    color: #666666;
+    font-weight: bold;
+}
+
+.change-input {
+    width: 560px;
+    height: 26px;
+    margin: 10px;
+    padding: 10px;
+    border: solid 1px #c2c0c0;
+    border-radius: 5px;
+    outline: none !important;
+    font-size: 16px;
+}
+
+.change-input.valid {
+    border: 2px solid green;
+}
+
+.change-input.invalid {
+    border: 2px solid red;
+}
+
+.change-input + .email-change-verify,
+.change-input + .name-change-verify,
+.change-input + .password-change-verify {
+    display: none;
+    height: 0;
+    margin: 0px 10px 20px 10px;
+    color:red;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.change-input.invalid + .email-change-verify,
+.change-input.invalid + .name-change-verify,
+.change-input.invalid + .password-change-verify {
+    display: block;
+    height: auto;
+}
+
+.email-change-button-outer-frame,
+.name-change-button-outer-frame,
+.password-change-button-outer-frame,
+.picture-change-button-outer-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.email-change-button-frame,
+.name-change-button-frame,
+.password-change-button-frame,
+.picture-change-button-frame {
+    flex: none;
+    width: 50%;
+}
+
+.email-change-button-left,
+.email-change-button-right,
+.name-change-button-left,
+.name-change-button-right,
+.password-change-button-left,
+.password-change-button-right,
+.picture-change-button-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 30px;
+    margin: 30px 10px 10px 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #448899;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.picture-change-button-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 51px;
+    margin: 30px 10px 10px 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #448899;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.email-change-button-left:hover,
+.email-change-button-right:hover,
+.name-change-button-left:hover,
+.name-change-button-right:hover,
+.password-change-button-left:hover,
+.password-change-button-right:hover,
+.picture-change-button-left:hover,
+.picture-change-button-right:hover {
+    opacity: 0.8;
+}
+
+.picture-change-picture-frame {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    overflow: hidden;
+    border: 3px solid #448899;
+    border-radius: 50%;
+}
+
+.picture-change-picture {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    cursor: pointer;
+}
+
+.picture-change-picture:hover {
+    filter: brightness(70%);
+}
+
+
+/* Loading Effect */
+.loading {
+    display: flex;
+    position: fixed;
+    top: 450px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity .3s ease-in;
+}
+
+.loading.show {
+    opacity: 1;
+}
+
+.ball {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #448899;
+    animation: jump .5s ease-in infinite;
+}
+
+.ball:nth-of-type(2) {
+    animation-delay: 0.1s;
+}
+
+.ball:nth-of-type(3) {
+    animation-delay: 0.2s;
+}
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+/* Mobile Devices */
+@media(max-width: 600px) {
+
+    .profile-outer-frame  {
+        flex-wrap: wrap;
+    }
+
+    .profile-separator-frame {
+        width: 96%;
+    }
+
+    .profile-header,
+    .profile-title,
+    .profile-title-text,
+    .profile-picture {
+        margin: 20px 10px 10px 18px;
+    }
+
+    .profile-button {
+        margin: 10px 15px 10px 10px;
+    }
+    
+    .email-change-header,
+    .name-change-header,
+    .password-change-header,
+    .picture-change-header {
+        margin: 20px 10px 30px 18px;
+    }
+
+    .email-change-title,
+    .name-change-title,
+    .password-change-title {
+        margin: 20px 10px 5px 18px;
+        color: #666666;
+    }
+
+    .change-input {
+        width: 85%;
+        margin: 10px 10px 10px 18px;
+    }
+
+    .email-change-button-left,
+    .name-change-button-left,
+    .password-change-button-left,
+    .picture-change-button-left {
+        width: 75%;
+        margin-left: 20px;
+    }
+
+    .email-change-button-right,
+    .name-change-button-right,
+    .password-change-button-right {
+        width: 75%;
+    }
+
+    .picture-change-button-right {
+        width: 85%;
+    }
+
+    .picture-change {
+        width: 200%;
+    }
+
+}

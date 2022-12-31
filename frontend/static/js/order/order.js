@@ -1,12 +1,9 @@
-import orderData from "./orderData.js";
-import displayUsername from "./displayUsername.js";
+import orderHistory from "./orderHistory.js";
 import directToBookingPage from "../booking/directToBookingPage.js";
 
-// Display username in order page.
-displayUsername();
 
-// Get order data.
-orderData();
+// Get order history data.
+orderHistory();
 
-// Check signin status before directing to the booking page.
+// Check signin status before redirecting to the booking page.
 directToBookingPage();

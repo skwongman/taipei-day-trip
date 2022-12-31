@@ -1,0 +1,287 @@
+/* Booking */
+.booking-container {
+    display: none;
+}
+
+.booking-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking {
+    width: 1000px;
+}
+
+.booking-no-booking {
+    margin-left: 20px;
+    color: #666666;
+    font-size: 16px;
+}
+
+.booking-title {
+    margin: 0px 0px 20px 20px;
+    color: #666666;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.booking-information {
+    display: flex;
+}
+
+
+/* Image (Left) */
+.booking-image-frame {
+    flex: none;
+    width: 30%;
+    margin: 20px;
+}
+
+.booking-image-frame > ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.booking-image > img {
+    box-sizing: border-box;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* Booking Details (Right) */
+.booking-details {
+    flex: none;
+    width: 50%;
+    margin: 20px;
+}
+
+.booking-details-title {
+    margin-bottom: 30px;
+    color: #448899;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.booking-attraction > a {
+    color: #448899;
+}
+
+.booking-details-text {
+    margin-bottom: 20px;
+    color: #666666;
+    font-size: 16px;
+}
+
+.booking-delete {
+    display: flex;
+    flex: auto;
+    justify-content: flex-end;
+    height: 30px;
+    margin: 20px 10px 0px 10px;
+}
+
+.booking-delete > img:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+/* Contact and Credit Card Input (Middle) */
+.contact-text.message {
+    font-weight: bold;
+}
+
+.contact-frame,
+.credit-card-frame {
+    display: flex;
+    justify-content: center;
+}
+
+.contact,
+.credit-card {
+    width: 1000px;
+}
+
+.contact-title,
+.credit-card-title {
+    margin: 0px 20px 20px 20px;
+    color: #666666;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.contact-text,
+.credit-card-text {
+    display: flex;
+    align-items: center;
+    margin: 0px 20px 20px 20px;
+    color: #666666;
+    font-size: 16px;
+}
+
+.contact-input,
+.credit-card-input {
+    box-sizing: border-box;
+    width: 200px;
+    height: 38px;
+    padding: 10px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    outline: none !important;
+    font-size: 16px;
+}
+
+.contact-input.valid {
+    color: green;
+}
+
+.contact-input.invalid {
+    color: red;
+}
+
+
+/* Confirm Button (Bottom) */
+.confirm-booking-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-booking {
+    width: 1000px;
+    text-align: right;
+}
+
+.confirm-amount {
+    margin: 10px 20px 10px 20px;
+    color: #666666;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.confirm-button-frame {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirm-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 173px;
+    height: 36px;
+    margin: 10px 20px 10px 20px;
+    padding: 0px;
+    border-radius: 5px;
+    background-color: #448899;
+    color: #FFFFFF;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.confirm-button:hover {
+    opacity: 0.8;
+}
+
+
+/* Separator */
+.separator {
+    width: 1200px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    border: 0.5px solid #E8E8E8;
+}
+
+
+/* Loading Effect */
+.loading {
+    display: flex;
+    position: fixed;
+    top: 450px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity .3s ease-in;
+}
+
+.loading.show {
+    opacity: 1;
+}
+
+.ball {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #448899;
+    animation: jump .5s ease-in infinite;
+}
+
+.ball:nth-of-type(2) {
+    animation-delay: 0.1s;
+}
+
+.ball:nth-of-type(3) {
+    animation-delay: 0.2s;
+}
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+/* Tablet Devices */
+@media(max-width: 1200px) {
+
+    .separator {
+        width: 750px;
+    }
+
+    .booking-title {
+        margin-left: 20px;
+    }
+
+}
+
+
+/* Mobile Devices */
+@media(max-width: 600px) {
+
+    .booking-information {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .booking-image-frame {
+        width: 90%;
+    }
+
+    .booking-details {
+        width: 90%;
+    }
+
+    .booking-delete {
+        width: 90%;
+        margin: 20px 19px 0px 19px;
+    }
+
+    .booking-image > img {
+        height: 256px;
+    }
+
+    .separator {
+        width: 340px;
+    }
+
+}

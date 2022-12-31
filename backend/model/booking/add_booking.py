@@ -7,7 +7,6 @@ from backend.view.booking.add_booking import ResponseMessage
 class Booking:
     def api_booking_post():
         member_id = MemberID.get_member_id()
-
         (booking_id, booking_date, booking_time, booking_fee) = UserInput.booking_input()
 
         try:

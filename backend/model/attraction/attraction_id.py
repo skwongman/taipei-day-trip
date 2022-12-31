@@ -12,6 +12,7 @@ class Attraction_id:
             cursor.execute(insert_query, insert_value)
             result = cursor.fetchone()
 
+            # If user inputs the attraction id in the url which is not exist, then return not found message.
             if result == None:
                 return ResponseMessage.api_attraction_id_not_found()
                 

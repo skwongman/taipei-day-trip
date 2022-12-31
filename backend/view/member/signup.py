@@ -7,6 +7,7 @@ class UserInput:
         name = request.json.get("name")
         email = request.json.get("email")
         password = request.json.get("password")
+        # Hash the password for encryption by using bcrypt before save it into the database.
         hashed_password = generate_password_hash(password).decode("utf-8")
         verify_name = re.fullmatch(r"[\u4E00-\u9FFF\u3400-\u4DBF\a-z\d]{1,20}", name)
         verify_email = re.fullmatch(r"^([\w-]+)@([a-z\d-]+)\.([a-z]{2,8})([\.a-z]{2,8})?$", email)

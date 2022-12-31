@@ -1,5 +1,7 @@
 export default function directToBookingPage(){
 
+    const loading = document.querySelector(".loading");
+
     const model = {
         init: function(){
             document.querySelector("#booking").addEventListener("click", () => {
@@ -21,6 +23,20 @@ export default function directToBookingPage(){
     };
 
     const view = {
+        renderLoadingEffect: function(){
+            try{
+                loading.classList.add("show");
+                setTimeout(() => {
+                    if(document.querySelector("#bookingOuterContainer")){
+                        document.querySelector("#bookingOuterContainer").style.display = "block";
+                        loading.classList.remove("show");
+                    };
+                }, 500);
+            }
+            catch(error){
+                console.log("Error(21): " + error);
+            };
+        },
         render: function(data){
             if(data.data){
                 location.href = "/booking";
@@ -42,6 +58,7 @@ export default function directToBookingPage(){
     const controller = {
         init: function(){
             model.init();
+            view.renderLoadingEffect();
         }
     };
     controller.init();

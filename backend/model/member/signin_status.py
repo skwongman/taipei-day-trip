@@ -14,7 +14,12 @@ class MemberSystem:
             insert_value = (member_id,)
             cursor.execute(insert_query, insert_value)
             result = cursor.fetchone()
-            member_data = {"id": result["member_id"], "name": result["name"], "email": result["email"]}
+            member_data = {
+                "id": result["member_id"],
+                "name": result["member_name"],
+                "email": result["member_email"],
+                "picture": result["member_picture"]
+            }
             return ResponseMessage.signin_status_correct(member_data)
 
         except Exception as e:

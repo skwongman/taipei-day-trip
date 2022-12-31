@@ -2,7 +2,7 @@ export default function signoutSystem(){
     
     const model = {
         init: function(){
-            document.querySelector("#signout").addEventListener("click", () => {
+            document.querySelector("#profileSignout").addEventListener("click", () => {
                 async function deleteUserData(url, method){
                     const response = await fetch(url, method);
                     const data = await response.json();
@@ -35,7 +35,7 @@ export default function signoutSystem(){
                 };
             };
         },
-        renderError: function(){
+        renderError: function(error){
             console.log("Error(8): " + error);
         }
     };

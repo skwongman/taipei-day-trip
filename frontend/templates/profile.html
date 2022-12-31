@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北一日遊</title>
+    <link rel="shortcut icon" href="#"/>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+
+<body>
+
+    <!-- Header and Navigation -->
+    <main-header></main-header>
+
+
+    <!-- Separator -->
+    <br/><br/><br/>
+
+
+    <!-- Profile Content -->
+    <div id="profileOuterContainer" style="display:none">
+
+        <div id="profileContainer" class="profile-container">
+
+            <div class="profile-outer-frame">
+                <div class="profile-frame">
+                    <div class="profile-header">個人檔案</div>
+                </div>
+            </div>        
+
+            <div class="profile-outer-frame">
+                <div class="profile-separator-frame">
+                    <div class="profile-separator"></div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-frame">
+                    <div class="profile-sub-header">
+                        <div id="profilePicture" class="profile-picture"></div>
+                    </div>
+                    <div class="profile-button-frame">
+                        <div id="profileButtonPicture" class="profile-button">更改</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-separator-frame">
+                    <div class="profile-separator"></div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-frame">
+                    <div class="profile-sub-header">
+                        <div class="profile-title">電子信箱</div>
+                        <div id="profileEmail" class="profile-title-text"></div>
+                    </div>
+                    <div class="profile-button-frame">
+                        <div id="profileButtonEmail" class="profile-button">更改</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-separator-frame">
+                    <div class="profile-separator"></div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-frame">
+                    <div class="profile-sub-header">
+                        <div class="profile-title">姓名</div>
+                        <div id="profileName" class="profile-title-text"></div>
+                    </div>
+                    <div class="profile-button-frame">
+                        <div id="profileButtonName" class="profile-button">更改</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-separator-frame">
+                    <div class="profile-separator"></div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-frame">
+                    <div class="profile-sub-header">
+                        <div class="profile-title">密碼</div>
+                        <div id="profilePassword" class="profile-title-text"></div>
+                    </div>
+                    <div class="profile-button-frame">
+                        <div id="profileButtonPassword" class="profile-button">更改</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-frame">
+                    <div class="profile-header">歷史訂單</div>
+                </div>
+            </div>
+            
+            <div class="profile-outer-frame">
+                <div class="profile-separator-frame">
+                    <div class="profile-separator"></div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-frame">
+                    <div class="profile-sub-header">
+                        <div class="profile-title">您的訂單總數</div>
+                        <div id="profileTotalOrder" class="profile-title-text"></div>
+                    </div>
+                    <div class="profile-button-frame">
+                        <div id="profileButtonOrderDetails" class="profile-button">詳情</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <div class="profile-separator-frame">
+                    <div class="profile-separator"></div>
+                </div>
+            </div>
+
+            <div class="profile-outer-frame">
+                <a href="/"><div class="profile-home-button">返回首頁</div></a>
+            </div>
+
+        </div>
+
+
+        <!-- E-mail Change -->
+        <div id="emailChangeContainer" class="email-change-container">
+            <div class="email-change-frame">
+                <div class="email-change">
+                    <div class="email-change-header">更改電子信箱</div>
+                    <div class="email-change-title">請輸入新的電子信箱</div>
+                    <div>
+                        <input id="emailChangeInput" class="change-input" name="email" type="text" value="">
+                        <p id="emailChangeVerify" class="email-change-verify">抱歉！請輸入正確電子信箱格式。</p>
+                    </div>
+
+                    <div class="email-change-button-outer-frame">
+                        <div class="email-change-button-frame">
+                            <div id="emailChangeButtonLeft" class="email-change-button-left">返回上一頁</div>
+                        </div>
+                        <div class="email-change-button-frame">
+                            <div id="emailChangeButtonRight" class="email-change-button-right">確認更改</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Name Change -->
+        <div id="nameChangeContainer" class="name-change-container">
+            <div class="name-change-frame">
+                <div class="name-change">
+                    <div class="name-change-header">更改姓名</div>
+                    <div class="name-change-title">請輸入新的姓名</div>
+                    <div>
+                        <input id="nameChangeInput" class="change-input" name="name" type="text" maxlength="20">
+                        <p class="name-change-verify">抱歉！只能接受中文字母、英文字母(a-z)和數字(0-9)。</p>
+                    </div>
+
+                    <div class="name-change-button-outer-frame">
+                        <div class="name-change-button-frame">
+                            <div id="nameChangeButtonLeft" class="name-change-button-left">返回上一頁</div>
+                        </div>
+                        <div class="name-change-button-frame">
+                            <div id="nameChangeButtonRight" class="name-change-button-right">確認更改</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Password Change -->
+        <div id="passwordChangeContainer" class="password-change-container">
+            <div class="password-change-frame">
+                <div class="password-change">
+                    <div class="password-change-header">更改密碼</div>
+                    <div class="password-change-title">請輸入新的密碼</div>
+                    <div>
+                        <input id="passwordChangeInput" class="change-input" name="password" type="password" maxlength="20">
+                        <p class="password-change-verify">抱歉！請設定8個字元或以上的密碼。</p>
+                    </div>
+
+                    <div class="password-change-button-outer-frame">
+                        <div class="password-change-button-frame">
+                            <div id="passwordChangeButtonLeft" class="password-change-button-left">返回上一頁</div>
+                        </div>
+                        <div class="password-change-button-frame">
+                            <div id="passwordChangeButtonRight" class="password-change-button-right">確認更改</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Profile Picture Change -->
+        <div id="pictureChangeContainer" class="picture-change-container">
+
+            <div class="picture-change-frame">
+                <div class="picture-change">
+                    <div class="picture-change-header">更改個人圖片</div>
+
+                    <form id="picture-upload-form">
+                        <input type="file" id="profileUploadPicture" name="profile-picture" style="display:none" accept=".jpg, .jpeg, .png" />
+
+                        <label for="profileUploadPicture" id="uploadButton">
+                            <div id="pictureChangePicture" class="picture-change-picture-frame"></div>
+                        </label>
+
+                        <div class="picture-change-button-outer-frame">
+                            <div class="picture-change-button-frame">
+                                <div id="pictureChangeButtonLeft" class="picture-change-button-left">返回上一頁</div>
+                            </div>
+                            <div class="picture-change-button-frame">
+                                <input id="pictureChangeButtonRight" class="picture-change-button-right" type="submit" value="確認更改">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Member Register and Signin -->
+    <main-member></main-member>
+
+
+    <!-- Footer -->
+    <main-footer></main-footer>
+
+
+    <!-- Loading Effect -->
+    <main-loading-effect></main-loading-effect>
+
+
+    <!-- Javascript -->
+    <script src="/js/html/header.js"></script>
+    <script src="/js/html/footer.js"></script>
+    <script src="/js/html/member.js"></script>
+    <script src="/js/html/loadingEffect.js"></script>
+    <script type="module" src="/js/profile/profile.js"></script>
+    <script type="module" src="/js/member/member.js"></script>
+
+</body>
+
+</html>

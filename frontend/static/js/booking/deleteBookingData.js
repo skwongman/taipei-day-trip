@@ -1,16 +1,19 @@
 export default function deleteBookingData(){
 
+    const loading = document.querySelector(".loading");
+
     const model = {
         init: function(){            
             document.querySelector("#bookingDelete").addEventListener("click", model.handleDeleteBooking);
         },
         handleDeleteBooking: async function(){
+            loading.classList.add("show");
             async function getDeleteBookingData(url, method){
                 const response = await fetch(url, method);
                 const data = await response.json();
                 return data;
             };
-    
+
             await getDeleteBookingData("/api/booking", {
                 method: "DELETE"
             })
@@ -30,9 +33,12 @@ export default function deleteBookingData(){
             };
 
             if(data.ok == true){
-                document.querySelector("#bookingContainer").style.display = "none";
-                document.querySelector("#bookingNoBooking").style.display = "block";
-                location.href = location.href;
+                setTimeout(() => {
+                    document.querySelector("#bookingContainer").style.display = "none";
+                    document.querySelector("#bookingNoBooking").style.display = "block";
+                    location.href = location.href;
+                    loading.classList.remove("show");
+                }, 500);
             };
         },
         renderError: function(error){

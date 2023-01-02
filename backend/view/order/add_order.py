@@ -6,15 +6,19 @@ import re
 
 class SigninStatus:
     def signin_token():
-        token = request.cookies["token"]
+        # Get the member_id from the cookie by decoding the token saved in the browser.
+        token = request.cookies
+        token = token["token"]
         secret_key = os.getenv("SECRET_KEY")
-        jwt.decode(token, secret_key, algorithms = "HS256")
-        return None
+        member_id = jwt.decode(token, secret_key, algorithms = "HS256")["member_id"]
+        return member_id
 
 class UserInput:
     def input():
         data = request.get_json()
         order_prime_number = data["prime"]
+        member_id = SigninStatus.signin_token()
+        order_member_id = member_id
         order_price = data["order"]["price"]
         order_contact_phone = data["order"]["contact"]["phone"]
         order_contact_name = data["order"]["contact"]["name"]
@@ -27,16 +31,13 @@ class UserInput:
         order_time = data["order"]["trip"]["time"]
         order_status = 1
         return (
-            order_prime_number, order_price, order_contact_phone, order_contact_name, order_contact_email,
+            order_prime_number, order_member_id, order_price, order_contact_phone, order_contact_name, order_contact_email,
             order_attraction_id, order_attraction_name, order_attraction_address, order_attraction_image,
             order_date, order_time, order_status
         )
     
     def verify_input():
-        result = UserInput.input()
-        order_contact_phone = result[2]
-        order_contact_name = result[3]
-        order_contact_email = result[4]
+        (_, _, _, order_contact_phone, order_contact_name, order_contact_email, *other_args) = UserInput.input()
         verify_order_contact_phone = re.fullmatch(r"[\d]{10}", order_contact_phone)
         verify_order_contact_name = re.fullmatch(r"[\u4E00-\u9FFF\u3400-\u4DBF\a-z\d]{1,20}", order_contact_name)
         verify_order_contact_email = re.fullmatch(r"^([\w-]+)@([a-z\d-]+)\.([a-z]{2,8})([\.a-z]{2,8})?$", order_contact_email)
@@ -44,6 +45,7 @@ class UserInput:
 
 class PaymentAPI:
     def make_payment(order_data):
+        # Required user inputs for TapPay API.
         api_url = os.getenv("API_URL")
         partner_key = os.getenv("PARTNER_KEY")
         merchant_id = os.getenv("MERCHANT_ID")
@@ -66,6 +68,7 @@ class PaymentAPI:
         transaction_result = response.json()
         transaction_status = transaction_result["status"]
         transaction_message = transaction_result["msg"]
+        # Response message, it could be either transaction successful or not successful case.
         response_message = response.text
         return transaction_status, transaction_message, response_message
 

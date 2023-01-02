@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北一日遊</title>
+    <link rel="shortcut icon" href="#"/>
+    <link rel="stylesheet" type="text/css" href="/css/thankyou.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+
+<body>
+
+    <!-- Header and Navigation -->
+    <main-header></main-header>
+
+
+    <!-- Separator -->
+    <br/><br/><br/><br/><br/>
+
+
+    <!-- Order Content -->
+        <div id="orderContainer" class="order-container" style="display:none">
+
+            <div class="order-frame">
+                <div class="order">
+
+                    <div id="orderNumber" class="order-number"></div>
+
+                    <div id="orderStatus"></div>
+
+                    <div id="orderRemarks" class="order-remarks"></div>
+
+                    <div class="order-information">
+
+                        <div class="order-image-frame">
+                            <ul>
+                                <li id="orderImage" class="order-image"></li>
+                            </ul>
+                        </div>
+
+                        <div class="order-details">
+                            <div class="order-details-title">
+                                <span id="orderAttraction" class="order-attraction"></span>
+                            </div>
+                            <div class="order-details-text"><b>日期： </b>
+                                <span id="orderDate"></span>
+                            </div>
+                            <div class="order-details-text"><b>時間： </b>
+                                <span id="orderTime"></span>
+                            </div>
+                            <div class="order-details-text"><b>費用： </b>
+                                <span id="orderFee"></span>
+                            </div>
+                            <div class="order-details-text"><b>地點： </b>
+                                <span id="orderVenue"></span>
+                            </div>
+                            <div class="order-details-text"><b>聯絡姓名： </b>
+                                <span id="orderContactName"></span>
+                            </div>
+                            <div class="order-details-text"><b>聯絡信箱： </b>
+                                <span id="orderContactEmail"></span>
+                            </div>
+                            <div class="order-details-text"><b>手機號碼： </b>
+                                <span id="orderContactNumber"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="orderDetailsPrevButton" class="order-details-prev-button">
+                <div>返回上一頁</div>
+            </div>
+        </div>
+
+    
+    <!-- Member Register and Signin -->
+    <main-member></main-member>
+
+
+    <!-- Footer -->
+    <main-footer></main-footer>
+
+
+    <!-- Loading Effect -->
+    <main-loading-effect></main-loading-effect>
+
+
+    <!-- Javascript -->
+    <script src="/js/html/header.js"></script>
+    <script src="/js/html/footer.js"></script>
+    <script src="/js/html/member.js"></script>
+    <script src="/js/html/loadingEffect.js"></script>
+    <script type="module" src="/js/orderhistory/order.js"></script>
+    <script type="module" src="/js/member/member.js"></script>
+
+</body>
+
+</html>

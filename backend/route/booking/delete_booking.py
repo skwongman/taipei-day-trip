@@ -7,7 +7,7 @@ delete_booking = Blueprint("delete_booking", __name__)
 
 @delete_booking.route('/api/booking', methods = ["DELETE"])
 def api_booking_delete():
-    # Not allow to access this API endpoint without login.
+    # If the token of cookie stored in the browser cannot be decoded to member_id, return the forbidden message.
     try:
         MemberID.get_member_id()
     except Exception:

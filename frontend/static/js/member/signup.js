@@ -52,7 +52,7 @@ export default function signupSystem(){
 
             if(data.message == "This e-mail has been registered."){
                 document.querySelector("#registerMessage").innerHTML = `
-                    <div class='register-message warning'>抱歉，此電子信箱已被註冊。</div>
+                    <div class='register-message warning'>抱歉，此電子信箱已被註冊！</div>
                 `
             };
         },

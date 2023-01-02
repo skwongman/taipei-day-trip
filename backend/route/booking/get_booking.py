@@ -7,7 +7,7 @@ get_booking = Blueprint("get_booking", __name__)
 
 @get_booking.route('/api/booking', methods = ["GET"])
 def api_booking():
-    # Not allow to access this API endpoint without login.
+    # If the token of cookie stored in the browser cannot be decoded to member_id, return the forbidden message.
     try:
         MemberID.get_member_id()
     except Exception:

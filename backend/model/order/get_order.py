@@ -1,16 +1,23 @@
 from flask import *
 from backend.route.__init__ import mypool
 from backend.view.order.get_order import ResponseMessage
+from backend.view.order.get_order import MemberID
 
 class Order:
     def api_get_order(orderNumber):
+        member_id = MemberID.get_member_id()
+
         try:
             connection = mypool.get_connection()
             cursor = connection.cursor(dictionary = True)
-            insert_query = "SELECT * FROM orders WHERE order_number = %s;"
-            insert_value = (orderNumber,)
+            insert_query = "SELECT * FROM orders WHERE order_number = %s AND order_member_id = %s;"
+            insert_value = (orderNumber, member_id)
             cursor.execute(insert_query, insert_value)
             result = cursor.fetchone()
+
+            if result == None:
+                return ResponseMessage.get_order_forbidden()
+
             data = {
                 "number": result["order_number"],
                 "price": result["order_price"],

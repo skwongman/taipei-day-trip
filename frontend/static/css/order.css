@@ -1,0 +1,168 @@
+.order-container {
+    display: flex;
+    visibility: hidden;
+    justify-content: center;
+}
+
+.order-frame {
+    width: 800px;
+}
+
+.order-header {
+    margin: 20px;
+    color: #448899;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.order-no-order {
+    margin: 20px;
+}
+
+.order-details {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    border-radius: 5px;
+    background-color: #E8E8E8;
+    cursor: pointer;
+}
+
+.order-details:hover {
+    filter: brightness(90%);
+}
+
+.order-image-frame {
+    flex: auto;
+    width: 30%;
+    margin: 20px;
+}
+
+.order-image {
+    box-sizing: border-box;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.order-summary {
+    flex: auto;
+    width: 70%;
+    margin: 15px;
+    padding: 15px;
+}
+
+.order-summary-name {
+    margin: 0px 0px 20px 0px;
+    color: #448899;
+    font-weight: bold;
+}
+
+.order-summary-date,
+.order-summary-order-number {
+    margin: 10px 0px 10px 0px;
+    color: #666666;
+}
+
+.order-status.success {
+    color: green;
+    font-weight: bold;
+}
+
+.order-status.unsuccess {
+    color: red;
+    font-weight: bold;
+}
+
+.order-prev-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 40px;
+    margin: 30px auto;
+    margin-bottom: 0px;
+    border-radius: 5px;
+    background-color: #448899;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.order-prev-button:hover {
+    opacity: 0.8;
+}
+
+
+/* Loading Effect */
+.loading {
+    display: flex;
+    position: fixed;
+    top: 450px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity .3s ease-in;
+}
+
+.loading.show {
+    opacity: 1;
+}
+
+.ball {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #448899;
+    animation: jump .5s ease-in infinite;
+}
+
+.ball:nth-of-type(2) {
+    animation-delay: 0.1s;
+}
+
+.ball:nth-of-type(3) {
+    animation-delay: 0.2s;
+}
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+/* Moble Devices */
+@media(max-width: 600px) {
+
+    .order-image-frame {
+        margin: 0px;
+    }
+
+    .order-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .order-summary {
+        margin: 0px 0px 10px 0px;
+        text-align: center;
+    }
+
+    .order-details {
+        flex-wrap: wrap;
+    }
+
+    .order-summary {
+        width: 90%;
+    }
+
+}

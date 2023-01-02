@@ -7,6 +7,7 @@ signin_status = Blueprint("signin_status", __name__)
 
 @signin_status.route("/api/user/auth", methods = ["GET"])
 def api_signin_status():
+	# If the token of cookie stored in the browser cannot be decoded to member_id, return the forbidden message.
 	try:
 		MemberID.get_member_id()
 	except Exception:

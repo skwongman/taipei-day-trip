@@ -17,3 +17,15 @@ def booking():
 @pages.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
+
+@pages.route("/profile")
+def profile():
+	return render_template("profile.html")
+
+@pages.route("/order")
+def order():
+	return render_template("order.html")
+
+@pages.route("/order/history")
+def order_history():
+	return render_template("history.html")

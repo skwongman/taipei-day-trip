@@ -8,12 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台北一日遊</title>
     <link rel="shortcut icon" href="#"/>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script src="/js/html/header.js" defer></script>
-    <script src="/js/html/footer.js" defer></script>
-    <script src="/js/html/member.js" defer></script>
-    <script type="module" src="/js/attraction/attraction.js" defer></script>
-    <script type="module" src="/js/member/member.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/css/attraction.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
 </head>
 
 <body>
@@ -27,74 +23,78 @@
 
 
     <!-- Attraction Content -->
-    <div class="attraction-container">
-        <div class="attraction-frame">
-            <div class="attraction">
+    <div id="attractionContainer" style="display:none">
 
-                <div class="attraction-image-frame">
-                    <div class="carousel">
-                        <img id="prev" class="slide-button prev" src="/img/btn_leftArrow.png">
-                        <img id="next" class="slide-button next" src="/img/btn_rightArrow.png">
-                        <!-- Attraction image container -->
-                        <ul id="attraction-image"></ul>
+        <div class="attraction-container">
+            <div class="attraction-frame">
+                <div class="attraction">
+
+                    <div class="attraction-image-frame">
+                        <div class="carousel">
+                            <img id="prev" class="slide-button prev" src="/img/btn_leftArrow.png">
+                            <img id="next" class="slide-button next" src="/img/btn_rightArrow.png">
+                            <!-- Attraction image container -->
+                            <ul id="attraction-image"></ul>
+                        </div>
+                        <!-- Navigation dots container -->
+                        <div id="navigation-dots" class="navigation-dots"></div>
                     </div>
-                    <!-- Navigation dots container -->
-                    <div id="navigation-dots" class="navigation-dots"></div>
-                </div>
 
-                <div class="attraction-plan">
-                    <!-- Attraction name container -->
-                    <div id="attraction-name" class="attraction-name"></div>
-                    <!-- Attraction category and mrt container -->
-                    <div id="attraction-cat-mrt" class="attraction-cat-mrt"></div>
+                    <div class="attraction-plan">
+                        <!-- Attraction name container -->
+                        <div id="attraction-name" class="attraction-name"></div>
+                        <!-- Attraction category and mrt container -->
+                        <div id="attraction-cat-mrt" class="attraction-cat-mrt"></div>
 
-                    <div class="attraction-background">
-                        <div class="attraction-journey">訂購導覽行程</div>
-                        <div class="attraction-intro">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+                        <div class="attraction-background">
+                            <div class="attraction-journey">訂購導覽行程</div>
+                            <div class="attraction-intro">以此景點為中心的一日行程，帶您探索城市角落故事</div>
 
-                        <div class="attraction-journey">
-                            <span>選擇日期：</span>
-                            <span><input name="attractionDate" id="attractionDate" class="attraction-date" type="date"></span>
-                        </div>
+                            <div class="attraction-journey">
+                                <span>選擇日期：</span>
+                                <span><input name="attractionDate" id="attractionDate" class="attraction-date" type="date"></span>
+                            </div>
 
-                        <div class="attraction-journey">
-                            <span>選擇時間：</span>
-                            <input type="radio" name="choose-time" id="attractionAM" checked><span class="attraction-am">上半天</span>
-                            <input type="radio" name="choose-time" id="attractionPM"><span>下半天</span>
-                        </div>
+                            <div class="attraction-journey">
+                                <span>選擇時間：</span>
+                                <input type="radio" name="choose-time" id="attractionAM" checked><span class="attraction-am">上半天</span>
+                                <input type="radio" name="choose-time" id="attractionPM"><span>下半天</span>
+                            </div>
 
-                        <div class="attraction-journey">
-                            <span>導覽費用：</span>
-                            <span>新台幣</span>
-                                <span id="attractionFee" class="attraction-fee" attractionTime="morning">2000</span>
-                            <span>元</span>
-                        </div>
+                            <div class="attraction-journey">
+                                <span>導覽費用：</span>
+                                <span>新台幣</span>
+                                    <span id="attractionFee" class="attraction-fee" attractionTime="morning">2000</span>
+                                <span>元</span>
+                            </div>
 
-                        <div class="attraction-button-background">
-                            <div id="attractionButton" class="attraction-button">開始預約行程</div>
+                            <div class="attraction-button-background">
+                                <div id="attractionButton" class="attraction-button">開始預約行程</div>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
-                
             </div>
         </div>
-    </div>
 
-    <hr class="separator"/>
+        <hr class="separator"/>
 
-    <div class="attraction-details-frame">
-        <div class="attraction-details">
-            <!-- Attraction description container -->
-            <div id="attraction-description" class="attraction-title text"></div>
+        <div class="attraction-details-frame">
+            <div class="attraction-details">
+                <!-- Attraction description container -->
+                <div id="attraction-description" class="attraction-title text"></div>
 
-            <div class="attraction-title">景點地址：</div>
-            <!-- Attraction address container -->
-            <div id="attraction-address" class="attraction-title text"></div>
+                <div class="attraction-title">景點地址：</div>
+                <!-- Attraction address container -->
+                <div id="attraction-address" class="attraction-title text"></div>
 
-            <div class="attraction-title">交通方式：</div>
-            <!-- Attraction mrt container -->
-            <div id="attraction-mrt" class="attraction-title text"></div>
+                <div class="attraction-title">交通方式：</div>
+                <!-- Attraction mrt container -->
+                <div id="attraction-mrt" class="attraction-title text"></div>
+            </div>
         </div>
+
     </div>
 
     
@@ -104,6 +104,19 @@
 
     <!-- Footer -->
     <main-footer></main-footer>
+
+
+    <!-- Loading Effect -->
+    <main-loading-effect></main-loading-effect>
+
+    
+    <!-- Javascript -->
+    <script src="/js/html/header.js"></script>
+    <script src="/js/html/footer.js"></script>
+    <script src="/js/html/member.js"></script>
+    <script src="/js/html/loadingEffect.js"></script>
+    <script type="module" src="/js/attraction/attraction.js"></script>
+    <script type="module" src="/js/member/member.js"></script>
 
 </body>
 

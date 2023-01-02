@@ -7,32 +7,27 @@ import jwt
 
 class MemberSystem:
     def signin(current_app):
-        
-        (email, password, verify_email, verify_password) = UserInput.input()
-
-        if (verify_email == None) or (verify_password == None):
-            return ResponseMessage.signin_incorrect_input()
+        (email, password, *other_args) = UserInput.input()
 
         try:
             connection = mypool.get_connection()
             cursor = connection.cursor(dictionary = True)
-            insert_query = "SELECT * FROM members WHERE email = %s;"
+            insert_query = "SELECT * FROM members WHERE member_email = %s;"
             insert_value = (email,)
             cursor.execute(insert_query, insert_value)
             result = cursor.fetchone()
 
+            # If the e-mail is incorrect, then return the e-mail incorrect message.
             if result == None:
                 return ResponseMessage.signin_incorrect()
 
-            member_data = {"member_id": result["member_id"], "password": result["password"]}
-            check_hashed_password = check_password_hash(member_data["password"], password)
-
+            # Check whether the hashed password is correct or not, return "True" if it corrects.
+            check_hashed_password = check_password_hash(result["member_password"], password)
             if not check_hashed_password:
                 return ResponseMessage.signin_incorrect()
             else:
-                token = jwt.encode({
-                    "member_id": member_data["member_id"]
-                }, current_app.config["SECRET_KEY"])
+                # Let the member_id be part of the JWT and store in the cookie for seven days, which is used to identify the identity of member and signin status.
+                token = jwt.encode({"member_id": result["member_id"]}, current_app.config["SECRET_KEY"])
                 token = token.decode("utf-8")
                 response = ResponseMessage.signin_correct()
                 response.set_cookie("token", token, max_age = 60*60*24*7)

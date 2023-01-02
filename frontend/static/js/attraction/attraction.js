@@ -7,7 +7,7 @@ import verifyAttractionID from "./verifyAttractionID.js";
 // Fetch attraction API data on web initial load.
 getAttractionData();
 
-// Check signin status before directing to the booking page.
+// Check signin status before redirecting to the booking page.
 directToBookingPage();
 
 // Attraction button.

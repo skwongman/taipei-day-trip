@@ -1,0 +1,361 @@
+/* CSS Reset */
+html, body, div, p, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+body {
+    margin-bottom: 160px;
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+/* Header and Navigation Bar */
+.header-frame {
+    display: flex;
+    z-index: 3;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 54px;
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 1200px;
+}
+
+.title {
+    display: flex;
+    flex: auto;
+    font-weight: bold;
+}
+
+.item-text {
+    color: #448899;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    flex: auto;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.item {
+    display: block;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.item.inactive {
+    display: none;
+}
+
+.item:hover {
+    color: #448899;
+    font-weight: bold;
+}
+
+#signout {
+    position: relative;
+    padding: 5px;
+    outline: none;
+}
+
+#signout:hover .profile-popup-menu {
+    display: block;
+}
+
+
+/* Member Popup Menu */
+.profile-popup-menu {
+    display: none;
+    z-index: 3;
+    position: absolute;
+    top: 18px;
+    right: -12px;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    opacity: 0.9;
+    border: 1px solid #E8E8E8;
+}
+
+.profile-popup-menu-inner-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+.profile-popup-item {
+    flex: auto;
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.profile-popup-item:hover {
+    color: #448899;
+    font-weight: bold;
+}
+
+.profile-popup-separator {
+    border: 0.5px solid #E8E8E8;
+}
+
+
+/* Member */
+.layer {
+    display: none;
+}
+
+.layer.active {
+    display: block;
+    z-index: 4;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: rgba(0,0,0,0.25);
+}
+
+.signin-frame,
+.register-frame {
+    display: none;
+    animation: signin-fade 0.2s ease-in-out;
+}
+
+@keyframes signin-fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.signin-frame.active,
+.register-frame.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-menu,
+.register-menu {
+    z-index: 5;
+    position: fixed;
+    top: 5rem;
+    width: 340px;
+    height: 275px;
+    height: auto;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.signin-close,
+.register-close {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    cursor: pointer;
+}
+
+.signin-cover,
+.register-cover {
+    height: 10px;
+    border-radius: 6px 6px 0px 0px;
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+}
+
+.signin-title,
+.register-title {
+    margin: 10px;
+    color: #666666;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.signin-input-frame,
+.register-input-frame {
+    text-align: center;
+}
+
+.signin-input,
+.register-input {
+    box-sizing: border-box;
+    width: 310px;
+    height: 47px;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    outline: none !important;
+    color: #757575;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.register-input.valid {
+    border: 2px solid green;
+}
+
+.register-input.invalid {
+    border: 2px solid red;
+}
+
+.register-input + .register-verify {
+    display: none;
+    height: 0;
+    color:red;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.register-input.invalid + .register-verify {
+    display: block;
+    height: auto;
+    margin: 6px 18px 6px 18px;
+}
+
+.signin-button-frame,
+.register-button-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-button,
+.register-button {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 310px;
+    height: 47px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #448899;
+    color: white;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signin-button:hover,
+.register-button:hover {
+    opacity: 0.8;
+}
+
+.signin-register {
+    margin: 10px 0px 18px 0px;
+    color: #666666;
+    font-size: 16px;
+    text-align: center;
+}
+
+.register-message,
+.signin-message {
+    margin: 10px 0px 15px 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.register-message.successful {
+    color: green;
+}
+
+.register-message.warning,
+.signin-message.warning {
+    color: red;
+}
+
+.register-signin {
+    margin: 10px 0px 20px 0px;
+    color: #666666;
+    font-size: 16px;
+    text-align: center;
+}
+
+.signin-register-click,
+.register-signin-click {
+    cursor: pointer;
+}
+
+.signin-register-click:hover,
+.register-signin-click:hover {
+    color: #448899;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+/* Footer */
+.footer {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 104px;
+    margin: 50px 0px 0px 0px;
+    background-color: #757575;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* Mobile Devices */
+@media(max-width: 600px) {
+
+    /* Navigation Bar */
+    .item {
+        margin: 5px;
+    }
+
+    .item-text {
+        margin: 0px 0px 0px 10px;
+    }
+
+}

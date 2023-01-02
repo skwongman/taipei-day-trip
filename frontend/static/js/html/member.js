@@ -47,7 +47,7 @@ class Member extends HTMLElement{
         
                         <div class="register-input-frame">
                             <input id="registerPassword" class="register-input" type="password" name="password" placeholder="輸入密碼">
-                            <p class="register-verify">請設定8個字元或以上的密碼。</p>
+                            <p class="register-verify">抱歉！請設定8個字元或以上的密碼。</p>
                         </div>
         
                     <div class="register-button-frame">

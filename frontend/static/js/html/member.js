@@ -11,11 +11,11 @@ class Member extends HTMLElement{
                     <div class="signin-title">登入會員帳戶</div>
         
                     <div class="signin-input-frame">
-                        <input id="signinEmail" class="signin-input" type="text" placeholder="輸入電子信箱" value="">
+                        <input id="signinEmail" class="signin-input" type="text" placeholder="輸入電子信箱" value="test@test.com">
                     </div>
         
                     <div class="signin-input-frame">
-                        <input id="signinPassword" class="signin-input" type="password" placeholder="輸入密碼" value="">
+                        <input id="signinPassword" class="signin-input" type="password" placeholder="輸入密碼" value="12345678">
                     </div>
         
                     <div class="signin-button-frame">

@@ -7,11 +7,12 @@ class Categories:
         try:
             connection = mypool.get_connection()
             cursor = connection.cursor(dictionary = True)
-            cursor.execute("SELECT * FROM attractions GROUP BY category ORDER BY attraction_id;")
+            cursor.execute("SELECT attraction_id, category FROM attractions ORDER BY attraction_id;")
             results = cursor.fetchall()
             category_data = []
             for result in results:
-                category_data.append(result["category"])
+                if result["category"] not in category_data:
+                    category_data.append(result["category"])
             return ResponseMessage.api_categories_correct(category_data)
 
         except Exception as e:

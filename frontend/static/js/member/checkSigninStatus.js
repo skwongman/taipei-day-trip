@@ -22,14 +22,25 @@ export default  function checkSigninStatus(){
 
     const view = {
         render(data){
+            const booking = document.querySelector("#booking");
+
             if(data != null){
-                const signin = document.querySelector("#signin");
                 const signout = document.querySelector("#signout");
-                
-                signin.classList.add("inactive");
+
                 signout.classList.remove("inactive");
                 signout.classList.add("item");
-            };
+
+                booking.classList.remove("inactive");
+                booking.classList.add("item");
+            }else{
+                const signin = document.querySelector("#signin");
+
+                signin.classList.remove("inactive");
+                signin.classList.add("item");
+
+                booking.classList.remove("inactive");
+                booking.classList.add("item");
+            }
         },
         renderUserProfile: function(data){
             if(data != null){

@@ -1,18 +1,25 @@
 import deleteBookingData from "./deleteBookingData.js";
 
-export default function confirmBookingData(cardPrimeNumber){
-
+export default function confirmBookingData(cardPrimeNumber, attractionData){
+    //debugger
     const loading = document.querySelector(".loading");
 
     const model = {
         init: async function(){
-            const bookingFee = document.querySelector("#bookingFee").textContent.slice(4,8);
-            const bookingAttractionID = document.querySelector("#bookingAttraction a").href.split("/").pop();
-            const bookingAttractionName = document.querySelector("#bookingAttraction").innerText.split(" ").pop();
-            const bookingVenue = document.querySelector("#bookingVenue").textContent;
-            const bookingImage = document.querySelector("#bookingImage img").src;
-            const bookingDate = document.querySelector("#bookingDate").textContent;
-            const bookingTime = document.querySelector("#bookingTime").textContent;
+            //const bookingFee = document.querySelector("#bookingFee").textContent.slice(4,8);
+            const bookingFee = attractionData.price;
+            //const bookingAttractionID = document.querySelector("#bookingAttraction a").href.split("/").pop();
+            const bookingAttractionID = attractionData.attraction.id;
+            //const bookingAttractionName = document.querySelector("#bookingAttraction").innerText.split(" ").pop();
+            const bookingAttractionName = attractionData.attraction.name;
+            //const bookingVenue = document.querySelector("#bookingVenue").textContent;
+            const bookingVenue = attractionData.attraction.address;
+            //const bookingImage = document.querySelector("#bookingImage img").src;
+            const bookingImage = attractionData.attraction.image;
+            //const bookingDate = document.querySelector("#bookingDate").textContent;
+            const bookingDate = attractionData.date;
+            //const bookingTime = document.querySelector("#bookingTime").textContent;
+            const bookingTime = attractionData.time;
 
             loading.classList.add("show");
 
@@ -26,23 +33,23 @@ export default function confirmBookingData(cardPrimeNumber){
                 method: "POST",
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify({
-                    "prime": cardPrimeNumber,
-                    "order": {
-                        "price": bookingFee,
-                        "trip": {
-                            "attraction": {
-                                "id": bookingAttractionID,
-                                "name": bookingAttractionName,
-                                "address": bookingVenue,
-                                "image": bookingImage
+                    prime: cardPrimeNumber,
+                    order: {
+                        price: bookingFee,
+                        trip: {
+                            attraction: {
+                                id: bookingAttractionID,
+                                name: bookingAttractionName,
+                                address: bookingVenue,
+                                image: bookingImage
                             },
-                            "date": bookingDate,
-                            "time": bookingTime
+                            date: bookingDate,
+                            time: bookingTime
                         },
-                        "contact": {
-                            "name": contactName.value,
-                            "email": contactEmail.value,
-                            "phone": contactNum.value
+                        contact: {
+                            name: contactName.value,
+                            email: contactEmail.value,
+                            phone: contactNum.value
                         }
                     }
                 })

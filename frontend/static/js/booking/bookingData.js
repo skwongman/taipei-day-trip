@@ -1,20 +1,25 @@
-export default function bookingData(){
+export default async function bookingData(){
 
     const model = {
-        init: function(){
+        init: async function(){
+            let bookingData = null;
+
             async function getBookingData(url){
                 const response = await fetch(url);
                 const data = await response.json();
                 return data;
             };
             
-            getBookingData("/api/booking")
+            await getBookingData("/api/booking")
             .then(data => {
+                bookingData = data.data;
                 view.render(data);
             })
             .catch((error) => {
                 viewError.render(error);
             });
+
+            return bookingData;
         }
     };
 
@@ -57,9 +62,10 @@ export default function bookingData(){
 
     const controller = {
         init: function(){
-            model.init();
+            return model.init();
         }
     };
-    controller.init();
+
+    return await controller.init();
 
 };

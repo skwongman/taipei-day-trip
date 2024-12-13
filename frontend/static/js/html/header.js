@@ -10,8 +10,8 @@ class Header extends HTMLElement{
                         </div>
                     </div>
                     <div class="nav">
-                        <div id="booking" class="item">預定行程</a></div>
-                        <div id="signin" class="item">登入/註冊</div>
+                        <div id="booking" class="item inactive">預定行程</a></div>
+                        <div id="signin" class="item inactive">登入/註冊</div>
                         <div id="signout" class="item inactive">會員中心
                         <div class="profile-popup-menu">
                             <div class="profile-popup-menu-inner-frame">

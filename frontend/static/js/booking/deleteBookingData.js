@@ -36,7 +36,7 @@ export default function deleteBookingData(){
                 setTimeout(() => {
                     document.querySelector("#bookingContainer").style.display = "none";
                     document.querySelector("#bookingNoBooking").style.display = "block";
-                    location.href = location.href;
+                    // location.href = location.href;
                     loading.classList.remove("show");
                 }, 500);
             };

@@ -1,6 +1,6 @@
 import confirmBookingData from "./confirmBookingData.js";
 
-export default function tapPayCreditCardSubmit(){
+export default function tapPayCreditCardSubmit(attractionData){
 
     const view = {
         render: function(){
@@ -16,7 +16,7 @@ export default function tapPayCreditCardSubmit(){
                     confirmBookingData("Get prime error: " + result.msg);
                     return;
                 };
-                confirmBookingData(result.card.prime);
+                confirmBookingData(result.card.prime, attractionData);
             });
         }
     };

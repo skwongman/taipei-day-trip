@@ -6,7 +6,7 @@ import confirmBookingButton from "./confirmBookingButton.js";
 import tapPayCreditCardInput from "./tapPayCreditCardInput.js";
 
 // Fetching Booking API Data.
-bookingData();
+const attractionData = await bookingData();
 
 // Delete Booking API.
 deleteBookingData();
@@ -18,7 +18,7 @@ directToBookingPage();
 inputVerification();
 
 // Verify user booking information format before confirmation.
-confirmBookingButton();
+confirmBookingButton(attractionData);
 
 // Tap Pay Credit Card inputs.
 tapPayCreditCardInput();

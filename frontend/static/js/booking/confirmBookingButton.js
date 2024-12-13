@@ -1,7 +1,7 @@
 import inputVerification from "./inputVerification.js";
 import tapPayCreditCardSubmit from "./tapPayCreditCardSubmit.js";
 
-export default function confirmBookingButton(){
+export default function confirmBookingButton(attractionData){
 
     const view = {
         render: async function(){
@@ -13,7 +13,7 @@ export default function confirmBookingButton(){
                 if(patterns["name"].test(contactName.value) &&
                 patterns["email"].test(contactEmail.value) &&
                 patterns["contact"].test(contactNum.value)){
-                    tapPayCreditCardSubmit();
+                    tapPayCreditCardSubmit(attractionData);
                 }
                 // Not allow user to submit order if all contact information are not filled in well.
                 else{
